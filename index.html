@@ -1092,6 +1092,171 @@
     border-color: var(--sl);
     color: white;
   }
+  /* THEME SWITCHER */
+  .theme-switcher {
+    position: relative;
+  }
+
+  .theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--white-dim);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-bright);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .theme-btn:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .theme-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .theme-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: rgba(10,15,30,0.97);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-bright);
+    border-radius: 10px;
+    padding: 0.4rem;
+    min-width: 160px;
+    z-index: 200;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .theme-menu.open { display: block; }
+
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    color: var(--white-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .theme-option:hover {
+    background: rgba(255,255,255,0.07);
+    color: var(--white);
+  }
+
+  .theme-option.active {
+    background: rgba(59,130,246,0.12);
+    color: var(--white);
+  }
+
+  .theme-swatch {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  /* LIGHT MODE overrides */
+  body.theme-light {
+    --navy: #f8fafc;
+    --navy-2: #f1f5f9;
+    --navy-3: #e2e8f0;
+    --navy-4: #cbd5e1;
+    --navy-5: #94a3b8;
+    --white: #0f172a;
+    --white-dim: #334155;
+    --white-dimmer: #64748b;
+    --card-bg: rgba(255,255,255,0.9);
+    --border: rgba(37,99,235,0.15);
+    --border-bright: rgba(37,99,235,0.3);
+    --gold: #b45309;
+  }
+
+  body.theme-light nav {
+    background: rgba(248,250,252,0.92);
+  }
+
+  body.theme-light .theme-menu {
+    background: rgba(248,250,252,0.97);
+  }
+
+  /* DARK PURPLE */
+  body.theme-purple {
+    --navy: #0d0a1e;
+    --navy-2: #120f28;
+    --navy-3: #1a1535;
+    --navy-4: #221c44;
+    --navy-5: #2d2558;
+    --blue: #7c3aed;
+    --blue-light: #a78bfa;
+    --cyan: #c084fc;
+    --cyan-light: #e9d5ff;
+    --card-bg: rgba(18,15,40,0.85);
+    --border: rgba(124,58,237,0.2);
+    --border-bright: rgba(124,58,237,0.4);
+  }
+
+  body.theme-purple .orb-1 {
+    background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+  }
+
+  /* DARK GREEN */
+  body.theme-green {
+    --navy: #0a1a0f;
+    --navy-2: #0d2114;
+    --navy-3: #112b1a;
+    --navy-4: #163821;
+    --navy-5: #1c4728;
+    --blue: #059669;
+    --blue-light: #34d399;
+    --cyan: #6ee7b7;
+    --cyan-light: #a7f3d0;
+    --card-bg: rgba(10,26,15,0.85);
+    --border: rgba(5,150,105,0.2);
+    --border-bright: rgba(5,150,105,0.4);
+  }
+
+  body.theme-green .orb-1 {
+    background: radial-gradient(circle, rgba(5,150,105,0.1) 0%, transparent 70%);
+  }
+
+  /* BLACK & GREY */
+  body.theme-black {
+    --navy: #0a0a0a;
+    --navy-2: #111111;
+    --navy-3: #1a1a1a;
+    --navy-4: #222222;
+    --navy-5: #2e2e2e;
+    --blue: #6b7280;
+    --blue-light: #9ca3af;
+    --cyan: #d1d5db;
+    --cyan-light: #f3f4f6;
+    --card-bg: rgba(17,17,17,0.9);
+    --border: rgba(107,114,128,0.2);
+    --border-bright: rgba(107,114,128,0.4);
+    --gold: #9ca3af;
+  }
+
+  body.theme-black .orb-1, body.theme-black .orb-2, body.theme-black .orb-3 {
+    display: none;
+  }
 </style>
 </head>
 <body>
@@ -1111,6 +1276,29 @@
     <li><a href="#ia">IA & EE</a></li>
   </ul>
   <span class="nav-syllabus">2023–2028 Syllabus</span>
+  <div class="theme-switcher">
+    <button class="theme-btn" onclick="toggleThemeMenu(this)">
+      <span class="theme-dot" id="active-dot"></span>
+      Theme ▾
+    </button>
+    <div class="theme-menu" id="theme-menu">
+      <div class="theme-option" onclick="setTheme('navy')" data-theme="navy">
+        <span class="theme-swatch" style="background:#0a0f1e;border:1px solid #2563eb;"></span> Dark Navy
+      </div>
+      <div class="theme-option" onclick="setTheme('purple')" data-theme="purple">
+        <span class="theme-swatch" style="background:#0d0a1e;border:1px solid #7c3aed;"></span> Dark Purple
+      </div>
+      <div class="theme-option" onclick="setTheme('green')" data-theme="green">
+        <span class="theme-swatch" style="background:#0a1a0f;border:1px solid #059669;"></span> Dark Green
+      </div>
+      <div class="theme-option" onclick="setTheme('black')" data-theme="black">
+        <span class="theme-swatch" style="background:#0a0a0a;border:1px solid #4b5563;"></span> Black & Grey
+      </div>
+      <div class="theme-option" onclick="setTheme('light')" data-theme="light">
+        <span class="theme-swatch" style="background:#f8fafc;border:1px solid #2563eb;"></span> Light Mode
+      </div>
+    </div>
+  </div>
   <div class="hamburger" onclick="toggleMobileNav(this)">
     <span></span><span></span><span></span>
   </div>
@@ -2349,7 +2537,42 @@
     }
   }
 
-  // Smooth scroll with offset for fixed nav
+  // Theme switcher
+  const themeColors = {
+    navy:   '#3b82f6',
+    purple: '#a78bfa',
+    green:  '#34d399',
+    black:  '#9ca3af',
+    light:  '#2563eb',
+  };
+
+  function setTheme(theme) {
+    document.body.className = theme === 'navy' ? '' : `theme-${theme}`;
+    document.getElementById('active-dot').style.background = themeColors[theme];
+    document.querySelectorAll('.theme-option').forEach(o => {
+      o.classList.toggle('active', o.dataset.theme === theme);
+    });
+    localStorage.setItem('ib-theme', theme);
+    document.getElementById('theme-menu').classList.remove('open');
+  }
+
+  function toggleThemeMenu(btn) {
+    document.getElementById('theme-menu').classList.toggle('open');
+  }
+
+  // Close menu when clicking outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.theme-switcher')) {
+      document.getElementById('theme-menu').classList.remove('open');
+    }
+  });
+
+  // Restore saved theme
+  const saved = localStorage.getItem('ib-theme');
+  if (saved) setTheme(saved);
+  else document.getElementById('active-dot').style.background = themeColors.navy;
+
+
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
