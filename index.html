@@ -1108,8 +1108,7 @@
     <li><a href="#resources">Resources</a></li>
     <li><a href="#ai-tools">AI Tools</a></li>
     <li><a href="#exams">Exams</a></li>
-    <li><a href="#ia">IA</a></li>
-    <li><a href="#ee">EE</a></li>
+    <li><a href="#ia">IA & EE</a></li>
   </ul>
   <span class="nav-syllabus">2023–2028 Syllabus</span>
   <div class="hamburger" onclick="toggleMobileNav(this)">
@@ -1155,7 +1154,7 @@
 
 <!-- FORMULA SHEET -->
 <section id="formulas">
-  <div class="section-label">40% of rubric · Most important section</div>
+  
   <h2>Annotated Formula Sheet</h2>
   <p class="section-desc">Every equation from the 2023–2028 data booklet. Variables defined, SI units included, SL/HL clearly marked.</p>
 
@@ -1892,7 +1891,7 @@
 
 <!-- RESOURCES -->
 <section id="resources">
-  <div class="section-label">20% of rubric</div>
+  
   <h2>Curated Resource Library</h2>
   <p class="section-desc">Vetted links only. No dead links, no mediocre YouTube rabbit holes — each resource has a clear purpose.</p>
 
@@ -2018,7 +2017,7 @@
 
 <!-- VIDEOS section -->
 <section id="videos">
-  <div class="section-label">Key topic videos</div>
+  
   <h2>Topic Video Picks</h2>
   <p class="section-desc">Curated videos for the most-tested IB Physics concepts.</p>
   <div class="video-grid">
@@ -2083,7 +2082,7 @@
 
 <!-- AI TOOLS -->
 <section id="ai-tools">
-  <div class="section-label">10% of rubric</div>
+  
   <h2>AI Study Tools</h2>
   <p class="section-desc">AI-generated flashcards, practice questions, and misconception guides — use these for active recall, not passive reading.</p>
   <div class="ai-grid">
@@ -2162,7 +2161,7 @@
 
 <!-- EXAM STRATEGY -->
 <section id="exams">
-  <div class="section-label">10% of rubric</div>
+  
   <h2>Exam Strategy</h2>
   <p class="section-desc">Paper formats, timing, and what actually costs marks — based on examiner reports.</p>
   <div class="papers-grid">
@@ -2224,7 +2223,7 @@
 
 <!-- IA + EE -->
 <section id="ia">
-  <div class="section-label">10% + 10% of rubric</div>
+  
   <h2>IA & EE Support</h2>
   <p class="section-desc">Internal Assessment and Extended Essay resources — rubrics, exemplars, and guidance.</p>
   <div class="support-grid">
@@ -2336,7 +2335,6 @@
   }
 
   function toggleMobileNav(btn) {
-    // simple toggle for mobile — could expand to a drawer
     const links = document.querySelector('.nav-links');
     if (links) {
       links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
@@ -2350,6 +2348,39 @@
       links.style.borderBottom = '1px solid var(--border)';
     }
   }
+
+  // Smooth scroll with offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // Cursor glow
+  const glow = document.createElement('div');
+  glow.style.cssText = `
+    position: fixed;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease;
+    filter: blur(8px);
+  `;
+  document.body.appendChild(glow);
+
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
 </script>
 </body>
 </html>
