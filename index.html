@@ -969,10 +969,27 @@ body { background: white; color: black; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-.nav-links, .nav-syllabus { display: none; }
+.nav-links { display: none; }
+.nav-right .nav-syllabus { display: none; }
 .hamburger { display: flex; }
 
 ```
+nav {
+  grid-template-columns: 1fr auto;
+}
+
+.nav-links.mobile-open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0; right: 0;
+  background: rgba(10,15,30,0.98);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  z-index: 99;
+}
+
 .formula-row {
   grid-template-columns: 1fr 1fr;
 }
@@ -2575,25 +2592,8 @@ display: none;
 
   function toggleMobileNav(btn) {
     const links = document.querySelector('.nav-links');
-    if (links) {
-      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-      links.style.flexDirection = 'column';
-      links.style.position = 'absolute';
-      links.style.top = '60px';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.background = 'rgba(10,15,30,0.98)';
-      links.style.padding = '1rem';
-      links.style.borderBottom = '1px solid var(--border)';
-    }
+    if (links) links.classList.toggle('mobile-open');
   }
-
-  // Trigger MathJax render
-  window.addEventListener('load', () => {
-    if (window.MathJax) MathJax.typesetPromise();
-  });
-
-  // Re-render when switching formula tabs
 
   const themeColors = {
     navy:   '#3b82f6',
@@ -2610,24 +2610,29 @@ display: none;
       o.classList.toggle('active', o.dataset.theme === theme);
     });
     localStorage.setItem('ib-theme', theme);
-    document.getElementById('theme-menu').classList.remove('open');
+    const menu = document.getElementById('theme-menu');
+    if (menu) menu.classList.remove('open');
   }
 
   function toggleThemeMenu(btn) {
     document.getElementById('theme-menu').classList.toggle('open');
   }
 
-  // Close menu when clicking outside
   document.addEventListener('click', e => {
     if (!e.target.closest('.theme-switcher')) {
-      document.getElementById('theme-menu').classList.remove('open');
+      const menu = document.getElementById('theme-menu');
+      if (menu) menu.classList.remove('open');
     }
   });
 
-  // Restore saved theme
+  // Restore saved theme — skip light on load to avoid white flash
   const saved = localStorage.getItem('ib-theme');
-  if (saved) setTheme(saved);
-  else document.getElementById('active-dot').style.background = themeColors.navy;
+  if (saved && saved !== 'light') setTheme(saved);
+  else {
+    localStorage.removeItem('ib-theme');
+    if (document.getElementById('active-dot'))
+      document.getElementById('active-dot').style.background = themeColors.navy;
+  }
 
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
