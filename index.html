@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,13 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<script>
-MathJax = {
-  tex: { inlineMath: [['$','$']] },
-  svg: { fontCache: 'global' }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 <style>
   :root {
     --navy: #0a0f1e;
@@ -40,1266 +32,1241 @@ MathJax = {
     --border-bright: rgba(59,130,246,0.35);
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-background: var(–navy);
-color: var(–white);
-font-family: ‘Inter’, sans-serif;
-font-size: 15px;
-line-height: 1.6;
-overflow-x: hidden;
-}
-
-/* Background grid */
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image:
-linear-gradient(rgba(37,99,235,0.025) 1px, transparent 1px),
-linear-gradient(90deg, rgba(37,99,235,0.025) 1px, transparent 1px);
-background-size: 40px 40px;
-pointer-events: none;
-z-index: 0;
-}
-
-/* Glow orbs */
-.orb {
-position: fixed;
-border-radius: 50%;
-filter: blur(80px);
-pointer-events: none;
-z-index: 0;
-}
-.orb-1 {
-width: 500px; height: 500px;
-background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
-top: -100px; left: -100px;
-}
-.orb-2 {
-width: 400px; height: 400px;
-background: radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%);
-bottom: 20%; right: -50px;
-}
-.orb-3 {
-width: 300px; height: 300px;
-background: radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%);
-top: 40%; left: 30%;
-}
-
-/* NAV */
-nav {
-position: fixed;
-top: 0; left: 0; right: 0;
-z-index: 100;
-background: rgba(10,15,30,0.85);
-backdrop-filter: blur(20px);
-border-bottom: 1px solid var(–border);
-padding: 0 2rem;
-height: 60px;
-display: grid;
-grid-template-columns: 1fr auto 1fr;
-align-items: center;
-}
-
-.nav-logo {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 800;
-font-size: 1.1rem;
-color: var(–white);
-text-decoration: none;
-letter-spacing: -0.01em;
-display: flex;
-align-items: center;
-gap: 0.5rem;
-justify-self: start;
-}
-
-.nav-logo span {
-color: var(–cyan);
-}
-
-.nav-links {
-display: flex;
-gap: 0.25rem;
-list-style: none;
-justify-self: center;
-}
-
-.nav-links a {
-color: var(–white-dim);
-text-decoration: none;
-font-size: 0.8rem;
-font-weight: 500;
-letter-spacing: 0.05em;
-text-transform: uppercase;
-padding: 0.4rem 0.7rem;
-border-radius: 6px;
-transition: all 0.2s;
-}
-
-.nav-links a:hover {
-color: var(–white);
-background: rgba(59,130,246,0.1);
-}
-
-.nav-right {
-display: flex;
-align-items: center;
-gap: 0.5rem;
-justify-self: end;
-}
-
-.nav-syllabus {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.7rem;
-color: var(–cyan);
-background: rgba(6,182,212,0.1);
-border: 1px solid rgba(6,182,212,0.2);
-padding: 0.25rem 0.6rem;
-border-radius: 4px;
-}
-
-.hamburger {
-display: none;
-flex-direction: column;
-gap: 5px;
-cursor: pointer;
-padding: 4px;
-}
-
-.hamburger span {
-width: 22px; height: 2px;
-background: var(–white-dim);
-border-radius: 2px;
-transition: all 0.3s;
-}
-
-/* HERO */
-.hero {
-position: relative;
-z-index: 1;
-min-height: 100vh;
-display: flex;
-align-items: center;
-padding: 80px 2rem 4rem;
-max-width: 1200px;
-margin: 0 auto;
-}
-
-.hero-content {
-max-width: 700px;
-}
-
-.hero-badge {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.72rem;
-color: var(–cyan);
-background: rgba(6,182,212,0.05);
-border: 1px solid rgba(6,182,212,0.2);
-padding: 0.35rem 0.8rem;
-border-radius: 100px;
-margin-bottom: 2rem;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-}
-
-.hero-badge::before {
-content: ‘’;
-width: 6px; height: 6px;
-background: var(–blue-light);
-border-radius: 50%;
-animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-0%, 100% { opacity: 1; transform: scale(1); }
-50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-h1 {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 800;
-font-size: clamp(2.8rem, 6vw, 5rem);
-line-height: 0.95;
-letter-spacing: -0.01em;
-margin-bottom: 1.5rem;
-}
-
-h1 .line-1 { display: block; color: var(–white); }
-h1 .line-2 { display: block; color: var(–cyan); }
-
-.hero-desc {
-font-size: 1.1rem;
-color: var(–white-dim);
-max-width: 520px;
-margin-bottom: 2.5rem;
-line-height: 1.7;
-}
-
-.hero-ctas {
-display: flex;
-gap: 1rem;
-flex-wrap: wrap;
-}
-
-.btn-primary {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-background: var(–blue);
-color: white;
-text-decoration: none;
-font-weight: 600;
-font-size: 0.9rem;
-padding: 0.75rem 1.5rem;
-border-radius: 8px;
-transition: all 0.2s;
-border: none;
-cursor: pointer;
-}
-
-.btn-primary:hover {
-background: var(–blue-light);
-transform: translateY(-1px);
-box-shadow: 0 8px 24px rgba(37,99,235,0.3);
-}
-
-.btn-secondary {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-background: transparent;
-color: var(–white-dim);
-text-decoration: none;
-font-weight: 500;
-font-size: 0.9rem;
-padding: 0.75rem 1.5rem;
-border-radius: 8px;
-border: 1px solid var(–border-bright);
-transition: all 0.2s;
-}
-
-.btn-secondary:hover {
-color: var(–white);
-border-color: rgba(59,130,246,0.5);
-background: rgba(59,130,246,0.05);
-}
-
-.hero-stats {
-display: flex;
-gap: 2.5rem;
-margin-top: 3.5rem;
-padding-top: 2.5rem;
-border-top: 1px solid var(–border);
-}
-
-.stat-item {}
-.stat-num {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 800;
-font-size: 1.8rem;
-color: var(–white);
-line-height: 1;
-}
-.stat-num span { color: var(–cyan); }
-.stat-label {
-font-size: 0.75rem;
-color: var(–white-dimmer);
-text-transform: uppercase;
-letter-spacing: 0.08em;
-margin-top: 0.25rem;
-}
-
-/* SECTIONS */
-section {
-position: relative;
-z-index: 1;
-max-width: 1200px;
-margin: 0 auto;
-padding: 5rem 2rem;
-}
-
-.section-label {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.7rem;
-color: var(–cyan);
-text-transform: uppercase;
-letter-spacing: 0.15em;
-margin-bottom: 0.75rem;
-}
-
-h2 {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 700;
-font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-letter-spacing: -0.01em;
-color: var(–white);
-margin-bottom: 0.75rem;
-line-height: 1.1;
-}
-
-.section-desc {
-color: var(–white-dim);
-font-size: 1rem;
-max-width: 560px;
-margin-bottom: 2.5rem;
-}
-
-/* FORMULA SECTION */
-.topic-nav {
-display: flex;
-gap: 0.5rem;
-flex-wrap: wrap;
-margin-bottom: 2rem;
-}
-
-.topic-btn {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.75rem;
-padding: 0.4rem 0.9rem;
-border-radius: 6px;
-border: 1px solid var(–border);
-background: transparent;
-color: var(–white-dim);
-cursor: pointer;
-transition: all 0.2s;
-letter-spacing: 0.03em;
-}
-
-.topic-btn:hover, .topic-btn.active {
-background: rgba(37,99,235,0.15);
-border-color: var(–blue);
-color: var(–white);
-}
-
-.topic-panel { display: none; }
-.topic-panel.active { display: block; }
-
-.formula-grid {
-display: grid;
-gap: 1px;
-background: var(–border);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
-
-.formula-row {
-display: grid;
-grid-template-columns: 1.2fr 1.4fr 1.8fr 0.8fr;
-gap: 0;
-background: var(–card-bg);
-transition: background 0.15s;
-}
-
-.formula-row:hover { background: rgba(20,31,61,0.9); }
-
-.formula-row.header {
-background: rgba(26,40,80,0.9);
-}
-
-.formula-row.header .fcell {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.68rem;
-text-transform: uppercase;
-letter-spacing: 0.1em;
-color: var(–white-dimmer);
-font-weight: 400;
-}
-
-.fcell {
-padding: 0.85rem 1rem;
-border-right: 1px solid var(–border);
-font-size: 0.88rem;
-display: flex;
-align-items: center;
-}
-
-.fcell:last-child { border-right: none; }
-
-.fcell.eq {
-font-size: 0.9rem;
-color: var(–cyan-light);
-font-style: normal;
-line-height: 1.8;
-}
-
-.fcell.eq mjx-container {
-color: var(–cyan-light) !important;
-}
-
-.fcell.vars {
-color: var(–white-dim);
-font-size: 0.82rem;
-line-height: 1.5;
-}
-
-.fcell.note {
-color: var(–white-dimmer);
-font-size: 0.8rem;
-}
-
-.badge {
-display: inline-block;
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.6rem;
-font-weight: 500;
-padding: 0.15rem 0.45rem;
-border-radius: 4px;
-letter-spacing: 0.05em;
-text-transform: uppercase;
-}
-
-.badge-sl {
-background: rgba(16,185,129,0.15);
-color: var(–sl);
-border: 1px solid rgba(16,185,129,0.25);
-}
-
-.badge-hl {
-background: rgba(139,92,246,0.15);
-color: var(–hl);
-border: 1px solid rgba(139,92,246,0.25);
-}
-
-.badge-both {
-background: rgba(37,99,235,0.15);
-color: var(–blue-light);
-border: 1px solid rgba(37,99,235,0.25);
-}
-
-.subtopic-header {
-padding: 0.6rem 1rem;
-background: rgba(26,40,80,0.6);
-font-family: ‘Lora’, Georgia, serif;
-font-size: 0.78rem;
-font-weight: 600;
-color: var(–gold);
-letter-spacing: 0.05em;
-text-transform: uppercase;
-border-top: 1px solid var(–border);
-}
-
-.subtopic-header:first-child { border-top: none; }
-
-/* CONSTANTS TABLE */
-.constants-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: 1px;
-background: var(–border);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-margin-top: 1.5rem;
-}
-
-.const-item {
-background: var(–card-bg);
-padding: 0.8rem 1rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 1rem;
-transition: background 0.15s;
-}
-
-.const-item:hover { background: rgba(20,31,61,0.9); }
-
-.const-name {
-font-size: 0.82rem;
-color: var(–white-dim);
-}
-
-.const-val {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.8rem;
-color: var(–cyan-light);
-text-align: right;
-white-space: nowrap;
-}
-
-/* RESOURCES */
-.resources-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-gap: 1rem;
-}
-
-.resource-card {
-background: var(–card-bg);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 1.25rem;
-text-decoration: none;
-color: inherit;
-transition: all 0.2s;
-display: block;
-}
-
-.resource-card:hover {
-border-color: var(–border-bright);
-background: rgba(20,31,61,0.9);
-transform: translateY(-2px);
-box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-}
-
-.resource-tag {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.65rem;
-text-transform: uppercase;
-letter-spacing: 0.1em;
-padding: 0.2rem 0.5rem;
-border-radius: 4px;
-display: inline-block;
-margin-bottom: 0.75rem;
-}
-
-.tag-video { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
-.tag-sim { background: rgba(16,185,129,0.12); color: var(–sl); border: 1px solid rgba(16,185,129,0.2); }
-.tag-notes { background: rgba(245,158,11,0.12); color: var(–gold); border: 1px solid rgba(245,158,11,0.2); }
-.tag-practice { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
-
-.resource-title {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 600;
-font-size: 0.95rem;
-color: var(–white);
-margin-bottom: 0.4rem;
-}
-
-.resource-desc {
-font-size: 0.82rem;
-color: var(–white-dimmer);
-line-height: 1.5;
-margin-bottom: 0.75rem;
-}
-
-.resource-footer {
-display: flex;
-align-items: center;
-justify-content: space-between;
-}
-
-.resource-topics {
-display: flex;
-gap: 0.3rem;
-flex-wrap: wrap;
-}
-
-.topic-pill {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.6rem;
-color: var(–white-dimmer);
-background: rgba(255,255,255,0.05);
-padding: 0.15rem 0.4rem;
-border-radius: 3px;
-}
-
-.resource-arrow {
-color: var(–blue-light);
-font-size: 0.8rem;
-opacity: 0;
-transition: opacity 0.2s, transform 0.2s;
-}
-
-.resource-card:hover .resource-arrow {
-opacity: 1;
-transform: translateX(3px);
-}
-
-/* VIDEO THUMBNAIL CARDS */
-.video-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-gap: 1.25rem;
-margin-top: 1.5rem;
-}
-
-.video-thumb-card {
-background: var(–card-bg);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-transition: all 0.2s;
-text-decoration: none;
-display: block;
-color: inherit;
-}
-
-.video-thumb-card:hover {
-border-color: var(–border-bright);
-transform: translateY(-2px);
-box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-}
-
-.video-thumb {
-position: relative;
-width: 100%;
-padding-bottom: 56.25%;
-background-size: cover;
-background-position: center;
-background-color: var(–navy-3);
-}
-
-.play-btn {
-position: absolute;
-inset: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-background: rgba(0,0,0,0.35);
-color: white;
-font-size: 2rem;
-opacity: 0;
-transition: opacity 0.2s;
-}
-
-.video-thumb-card:hover .play-btn { opacity: 1; }
-
-.video-info {
-padding: 0.9rem 1rem;
-}
-
-.video-title {
-font-family: ‘Lora’, Georgia, serif;
-font-size: 0.88rem;
-font-weight: 600;
-color: var(–white);
-margin-bottom: 0.25rem;
-}
-
-.video-channel {
-font-size: 0.75rem;
-color: var(–white-dimmer);
-}
-
-/* EXAM STRATEGY */
-.papers-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-gap: 1rem;
-}
-
-.paper-card {
-background: var(–card-bg);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 1.5rem;
-transition: all 0.2s;
-}
-
-.paper-card:hover {
-border-color: var(–border-bright);
-}
-
-.paper-num {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 800;
-font-size: 2rem;
-color: var(–cyan);
-line-height: 1;
-margin-bottom: 0.5rem;
-}
-
-.paper-name {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 600;
-font-size: 1rem;
-color: var(–white);
-margin-bottom: 0.5rem;
-}
-
-.paper-meta {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.75rem;
-color: var(–gold);
-margin-bottom: 1rem;
-}
-
-.paper-tips {
-list-style: none;
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-}
-
-.paper-tips li {
-font-size: 0.84rem;
-color: var(–white-dim);
-padding-left: 1rem;
-position: relative;
-}
-
-.paper-tips li::before {
-content: ‘→’;
-position: absolute;
-left: 0;
-color: var(–blue-light);
-font-size: 0.75rem;
-}
-
-/* AI TOOLS */
-.ai-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-gap: 1rem;
-}
-
-.ai-card {
-background: var(–card-bg);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 1.5rem;
-transition: all 0.2s;
-text-decoration: none;
-display: block;
-color: inherit;
-}
-
-.ai-card:hover {
-border-color: var(–border-bright);
-background: rgba(20,31,61,0.9);
-transform: translateY(-2px);
-box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-}
-
-.ai-icon {
-width: 40px; height: 40px;
-border-radius: 10px;
-display: flex; align-items: center; justify-content: center;
-font-size: 1.2rem;
-margin-bottom: 1rem;
-}
-
-.ai-icon.blue { background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.2); }
-.ai-icon.cyan { background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.2); }
-.ai-icon.purple { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.2); }
-.ai-icon.gold { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.2); }
-
-.ai-title {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 600;
-font-size: 0.95rem;
-color: var(–white);
-margin-bottom: 0.4rem;
-}
-
-.ai-desc {
-font-size: 0.82rem;
-color: var(–white-dimmer);
-line-height: 1.5;
-}
-
-/* IA/EE */
-.support-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1.5rem;
-}
-
-.support-card {
-background: var(–card-bg);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 1.75rem;
-}
-
-.support-header {
-display: flex;
-align-items: center;
-gap: 0.75rem;
-margin-bottom: 1.5rem;
-}
-
-.support-icon {
-width: 36px; height: 36px;
-border-radius: 8px;
-display: flex; align-items: center; justify-content: center;
-font-size: 1rem;
-}
-
-.support-title {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 700;
-font-size: 1.1rem;
-color: var(–white);
-}
-
-.support-subtitle {
-font-size: 0.75rem;
-color: var(–white-dimmer);
-}
-
-.support-items {
-display: flex;
-flex-direction: column;
-gap: 0.75rem;
-}
-
-.support-item {
-display: flex;
-align-items: flex-start;
-gap: 0.75rem;
-padding: 0.75rem;
-background: rgba(255,255,255,0.03);
-border: 1px solid rgba(255,255,255,0.05);
-border-radius: 8px;
-text-decoration: none;
-color: inherit;
-transition: all 0.2s;
-}
-
-.support-item:hover {
-background: rgba(59,130,246,0.08);
-border-color: rgba(59,130,246,0.15);
-}
-
-.support-item-icon { font-size: 1rem; margin-top: 0.1rem; }
-
-.support-item-text {}
-.support-item-title {
-font-size: 0.85rem;
-font-weight: 500;
-color: var(–white);
-margin-bottom: 0.15rem;
-}
-.support-item-desc {
-font-size: 0.77rem;
-color: var(–white-dimmer);
-}
-
-/* RUBRIC CRITERIA */
-.criteria-list {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-margin-top: 1rem;
-}
-
-.criterion {
-display: flex;
-align-items: center;
-gap: 0.75rem;
-padding: 0.6rem 0.8rem;
-background: rgba(255,255,255,0.03);
-border-radius: 8px;
-font-size: 0.82rem;
-color: var(–white-dim);
-}
-
-.criterion-label {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.7rem;
-width: 40px;
-color: var(–white-dimmer);
-}
-
-.criterion-bar {
-flex: 1;
-height: 4px;
-background: rgba(255,255,255,0.05);
-border-radius: 2px;
-overflow: hidden;
-}
-
-.criterion-fill {
-height: 100%;
-border-radius: 2px;
-background: var(–blue-light);
-}
-
-.criterion-pct {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.72rem;
-color: var(–white-dimmer);
-width: 32px;
-text-align: right;
-}
-
-/* FOOTER */
-footer {
-position: relative;
-z-index: 1;
-border-top: 1px solid var(–border);
-padding: 2rem;
-text-align: center;
-color: var(–white-dimmer);
-font-size: 0.8rem;
-}
-
-footer .footer-inner {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 1rem;
-}
-
-.footer-logo {
-font-family: ‘Lora’, Georgia, serif;
-font-weight: 700;
-font-size: 0.9rem;
-color: var(–white-dim);
-}
-
-.footer-note {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.7rem;
-color: var(–white-dimmer);
-}
-
-/* DIVIDER */
-.section-divider {
-position: relative;
-z-index: 1;
-border: none;
-border-top: 1px solid var(–border);
-max-width: 1200px;
-margin: 0 auto;
-}
-
-/* PRINT STYLES */
-@media print {
-nav, .hero, .orb, footer { display: none; }
-body { background: white; color: black; }
-.formula-row { background: white; border: 1px solid #ddd; }
-.fcell.eq { color: #0066cc; }
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-.nav-links { display: none; }
-.nav-right .nav-syllabus { display: none; }
-.hamburger { display: flex; }
-
-```
-nav {
-  grid-template-columns: 1fr auto;
-}
-
-.nav-links.mobile-open {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  left: 0; right: 0;
-  background: rgba(10,15,30,0.98);
-  padding: 1rem;
-  border-bottom: 1px solid var(--border);
-  z-index: 99;
-}
-
-.formula-row {
-  grid-template-columns: 1fr 1fr;
-}
-
-.formula-row .fcell:nth-child(3),
-.formula-row .fcell:nth-child(4) {
-  grid-column: span 1;
-}
-
-.support-grid { grid-template-columns: 1fr; }
-
-.hero-stats { gap: 1.5rem; }
-
-.hero-stats .stat-num { font-size: 1.4rem; }
-
-nav { padding: 0 1rem; }
-section { padding: 3rem 1rem; }
-```
-
-}
-
-/* ANIMATIONS */
-@keyframes fadeInUp {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-.hero-content > * {
-animation: fadeInUp 0.6s ease both;
-}
-
-.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-.hero-content > *:nth-child(3) { animation-delay: 0.3s; }
-.hero-content > *:nth-child(4) { animation-delay: 0.4s; }
-.hero-content > *:nth-child(5) { animation-delay: 0.5s; }
-
-/* MISCONCEPTIONS */
-.misconception-list {
-display: flex;
-flex-direction: column;
-gap: 0.75rem;
-}
-
-.misconception-item {
-background: var(–card-bg);
-border: 1px solid var(–border);
-border-radius: 10px;
-overflow: hidden;
-}
-
-.misconception-q {
-padding: 0.9rem 1rem;
-font-size: 0.88rem;
-font-weight: 500;
-color: var(–white);
-cursor: pointer;
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 1rem;
-transition: background 0.15s;
-}
-
-.misconception-q:hover { background: rgba(59,130,246,0.05); }
-
-.misconception-q .toggle {
-font-size: 1rem;
-color: var(–blue-light);
-flex-shrink: 0;
-transition: transform 0.2s;
-}
-
-.misconception-a {
-display: none;
-padding: 0 1rem 0.9rem;
-font-size: 0.84rem;
-color: var(–white-dim);
-line-height: 1.6;
-border-top: 1px solid var(–border);
-padding-top: 0.75rem;
-}
-
-.misconception-item.open .toggle { transform: rotate(45deg); }
-.misconception-item.open .misconception-a { display: block; }
-
-/* CHECKLIST */
-.checklist {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: 0.5rem;
-}
-
-.check-item {
-display: flex;
-align-items: center;
-gap: 0.6rem;
-padding: 0.6rem 0.8rem;
-background: rgba(255,255,255,0.02);
-border: 1px solid var(–border);
-border-radius: 8px;
-font-size: 0.84rem;
-color: var(–white-dim);
-cursor: pointer;
-transition: all 0.15s;
-user-select: none;
-}
-
-.check-item:hover {
-background: rgba(59,130,246,0.06);
-border-color: rgba(59,130,246,0.2);
-}
-
-.check-item.checked {
-background: rgba(16,185,129,0.08);
-border-color: rgba(16,185,129,0.2);
-color: var(–sl);
-}
-
-.check-box {
-width: 16px; height: 16px;
-border-radius: 4px;
-border: 1.5px solid var(–white-dimmer);
-flex-shrink: 0;
-display: flex; align-items: center; justify-content: center;
-font-size: 0.65rem;
-transition: all 0.15s;
-}
-
-.check-item.checked .check-box {
-background: var(–sl);
-border-color: var(–sl);
-color: white;
-}
-/* THEME SWITCHER */
-.theme-switcher {
-position: relative;
-}
-
-.theme-btn {
-display: flex;
-align-items: center;
-gap: 0.4rem;
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.72rem;
-color: var(–white-dim);
-background: rgba(255,255,255,0.05);
-border: 1px solid var(–border-bright);
-padding: 0.3rem 0.7rem;
-border-radius: 6px;
-cursor: pointer;
-transition: all 0.2s;
-letter-spacing: 0.03em;
-white-space: nowrap;
-}
-
-.theme-btn:hover {
-color: var(–white);
-background: rgba(255,255,255,0.08);
-}
-
-.theme-dot {
-width: 8px; height: 8px;
-border-radius: 50%;
-background: var(–blue-light);
-display: inline-block;
-flex-shrink: 0;
-}
-
-.theme-menu {
-display: none;
-position: absolute;
-top: calc(100% + 8px);
-right: 0;
-background: rgba(10,15,30,0.97);
-backdrop-filter: blur(20px);
-border: 1px solid var(–border-bright);
-border-radius: 10px;
-padding: 0.4rem;
-min-width: 160px;
-z-index: 200;
-box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-}
-
-.theme-menu.open { display: block; }
-
-.theme-option {
-display: flex;
-align-items: center;
-gap: 0.6rem;
-padding: 0.5rem 0.7rem;
-border-radius: 6px;
-font-size: 0.82rem;
-color: var(–white-dim);
-cursor: pointer;
-transition: all 0.15s;
-}
-
-.theme-option:hover {
-background: rgba(255,255,255,0.07);
-color: var(–white);
-}
-
-.theme-option.active {
-background: rgba(59,130,246,0.12);
-color: var(–white);
-}
-
-.theme-swatch {
-width: 14px; height: 14px;
-border-radius: 3px;
-flex-shrink: 0;
-display: inline-block;
-}
-
-/* LIGHT MODE overrides */
-body.theme-light {
-–navy: #f8fafc;
-–navy-2: #f1f5f9;
-–navy-3: #e2e8f0;
-–navy-4: #cbd5e1;
-–navy-5: #94a3b8;
-–white: #0f172a;
-–white-dim: #334155;
-–white-dimmer: #64748b;
-–card-bg: rgba(255,255,255,0.9);
-–border: rgba(37,99,235,0.15);
-–border-bright: rgba(37,99,235,0.3);
-–gold: #b45309;
-}
-
-body.theme-light nav {
-background: rgba(248,250,252,0.92);
-}
-
-body.theme-light .theme-menu {
-background: rgba(248,250,252,0.97);
-}
-
-/* DARK PURPLE */
-body.theme-purple {
-–navy: #0d0a1e;
-–navy-2: #120f28;
-–navy-3: #1a1535;
-–navy-4: #221c44;
-–navy-5: #2d2558;
-–blue: #7c3aed;
-–blue-light: #a78bfa;
-–cyan: #c084fc;
-–cyan-light: #e9d5ff;
-–card-bg: rgba(18,15,40,0.85);
-–border: rgba(124,58,237,0.2);
-–border-bright: rgba(124,58,237,0.4);
-}
-
-body.theme-purple .orb-1 {
-background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
-}
-
-/* DARK GREEN */
-body.theme-green {
-–navy: #0a1a0f;
-–navy-2: #0d2114;
-–navy-3: #112b1a;
-–navy-4: #163821;
-–navy-5: #1c4728;
-–blue: #059669;
-–blue-light: #34d399;
-–cyan: #6ee7b7;
-–cyan-light: #a7f3d0;
-–card-bg: rgba(10,26,15,0.85);
-–border: rgba(5,150,105,0.2);
-–border-bright: rgba(5,150,105,0.4);
-}
-
-body.theme-green .orb-1 {
-background: radial-gradient(circle, rgba(5,150,105,0.1) 0%, transparent 70%);
-}
-
-/* BLACK & GREY */
-body.theme-black {
-–navy: #0a0a0a;
-–navy-2: #111111;
-–navy-3: #1a1a1a;
-–navy-4: #222222;
-–navy-5: #2e2e2e;
-–blue: #6b7280;
-–blue-light: #9ca3af;
-–cyan: #d1d5db;
-–cyan-light: #f3f4f6;
-–card-bg: rgba(17,17,17,0.9);
-–border: rgba(107,114,128,0.2);
-–border-bright: rgba(107,114,128,0.4);
-–gold: #9ca3af;
-}
-
-body.theme-black .orb-1, body.theme-black .orb-2, body.theme-black .orb-3 {
-display: none;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Glow orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+    top: -100px; left: -100px;
+  }
+  .orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%);
+    bottom: 20%; right: -50px;
+  }
+  .orb-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%);
+    top: 40%; left: 30%;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-self: start;
+  }
+
+  .nav-logo span {
+    color: var(--cyan);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    justify-self: center;
+  }
+
+  .nav-links a {
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+    background: rgba(59,130,246,0.1);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-self: end;
+  }
+
+  .nav-syllabus {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    background: rgba(6,182,212,0.1);
+    border: 1px solid rgba(6,182,212,0.2);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    width: 22px; height: 2px;
+    background: var(--white-dim);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--cyan);
+    background: rgba(6,182,212,0.05);
+    border: 1px solid rgba(6,182,212,0.2);
+    padding: 0.35rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue-light);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 .line-1 { display: block; color: var(--white); }
+  h1 .line-2 { display: block; color: var(--cyan); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--white-dim);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--blue-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--white-dim);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-bright);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--white);
+    border-color: rgba(59,130,246,0.5);
+    background: rgba(59,130,246,0.05);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--cyan); }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--white-dimmer);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+
+  .section-desc {
+    color: var(--white-dim);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* FORMULA SECTION */
+  .topic-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .topic-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--white-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .topic-btn:hover, .topic-btn.active {
+    background: rgba(37,99,235,0.15);
+    border-color: var(--blue);
+    color: var(--white);
+  }
+
+  .topic-panel { display: none; }
+  .topic-panel.active { display: block; }
+
+  .formula-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .formula-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1.4fr 1.8fr 0.8fr;
+    gap: 0;
+    background: var(--card-bg);
+    transition: background 0.15s;
+  }
+
+  .formula-row:hover { background: rgba(20,31,61,0.9); }
+
+  .formula-row.header {
+    background: rgba(26,40,80,0.9);
+  }
+
+  .formula-row.header .fcell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--white-dimmer);
+    font-weight: 400;
+  }
+
+  .fcell {
+    padding: 0.85rem 1rem;
+    border-right: 1px solid var(--border);
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .fcell:last-child { border-right: none; }
+
+  .fcell.eq {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--cyan-light);
+    font-style: italic;
+  }
+
+  .fcell.vars {
+    color: var(--white-dim);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .fcell.note {
+    color: var(--white-dimmer);
+    font-size: 0.8rem;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .badge-sl {
+    background: rgba(16,185,129,0.15);
+    color: var(--sl);
+    border: 1px solid rgba(16,185,129,0.25);
+  }
+
+  .badge-hl {
+    background: rgba(139,92,246,0.15);
+    color: var(--hl);
+    border: 1px solid rgba(139,92,246,0.25);
+  }
+
+  .badge-both {
+    background: rgba(37,99,235,0.15);
+    color: var(--blue-light);
+    border: 1px solid rgba(37,99,235,0.25);
+  }
+
+  .subtopic-header {
+    padding: 0.6rem 1rem;
+    background: rgba(26,40,80,0.6);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
+
+  .subtopic-header:first-child { border-top: none; }
+
+  /* CONSTANTS TABLE */
+  .constants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+
+  .const-item {
+    background: var(--card-bg);
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.15s;
+  }
+
+  .const-item:hover { background: rgba(20,31,61,0.9); }
+
+  .const-name {
+    font-size: 0.82rem;
+    color: var(--white-dim);
+  }
+
+  .const-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--cyan-light);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* RESOURCES */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .resource-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: block;
+  }
+
+  .resource-card:hover {
+    border-color: var(--border-bright);
+    background: rgba(20,31,61,0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .resource-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .tag-video { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+  .tag-sim { background: rgba(16,185,129,0.12); color: var(--sl); border: 1px solid rgba(16,185,129,0.2); }
+  .tag-notes { background: rgba(245,158,11,0.12); color: var(--gold); border: 1px solid rgba(245,158,11,0.2); }
+  .tag-practice { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+
+  .resource-title {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .resource-desc {
+    font-size: 0.82rem;
+    color: var(--white-dimmer);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .resource-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .resource-topics {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  .topic-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--white-dimmer);
+    background: rgba(255,255,255,0.05);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  .resource-arrow {
+    color: var(--blue-light);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .resource-card:hover .resource-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+
+  /* VIDEO THUMBNAIL CARDS */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .video-thumb-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .video-thumb-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .video-thumb {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--navy-3);
+  }
+
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.35);
+    color: white;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .video-thumb-card:hover .play-btn { opacity: 1; }
+
+  .video-info {
+    padding: 0.9rem 1rem;
+  }
+
+  .video-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .video-channel {
+    font-size: 0.75rem;
+    color: var(--white-dimmer);
+  }
+
+  /* EXAM STRATEGY */
+  .papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .paper-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+
+  .paper-card:hover {
+    border-color: var(--border-bright);
+  }
+
+  .paper-num {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--cyan);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-name {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .paper-tips {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .paper-tips li {
+    font-size: 0.84rem;
+    color: var(--white-dim);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .paper-tips li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue-light);
+    font-size: 0.75rem;
+  }
+
+  /* AI TOOLS */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .ai-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .ai-card:hover {
+    border-color: var(--border-bright);
+    background: rgba(20,31,61,0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .ai-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-icon.blue { background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.2); }
+  .ai-icon.cyan { background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.2); }
+  .ai-icon.purple { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.2); }
+  .ai-icon.gold { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.2); }
+
+  .ai-title {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .ai-desc {
+    font-size: 0.82rem;
+    color: var(--white-dimmer);
+    line-height: 1.5;
+  }
+
+  /* IA/EE */
+  .support-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .support-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+
+  .support-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .support-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .support-title {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .support-subtitle {
+    font-size: 0.75rem;
+    color: var(--white-dimmer);
+  }
+
+  .support-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .support-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+
+  .support-item:hover {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.15);
+  }
+
+  .support-item-icon { font-size: 1rem; margin-top: 0.1rem; }
+
+  .support-item-text {}
+  .support-item-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.15rem;
+  }
+  .support-item-desc {
+    font-size: 0.77rem;
+    color: var(--white-dimmer);
+  }
+
+  /* RUBRIC CRITERIA */
+  .criteria-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .criterion {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--white-dim);
+  }
+
+  .criterion-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    width: 40px;
+    color: var(--white-dimmer);
+  }
+
+  .criterion-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .criterion-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--blue-light);
+  }
+
+  .criterion-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--white-dimmer);
+    width: 32px;
+    text-align: right;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--white-dimmer);
+    font-size: 0.8rem;
+  }
+
+  footer .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--white-dim);
+  }
+
+  .footer-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--white-dimmer);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* PRINT STYLES */
+  @media print {
+    nav, .hero, .orb, footer { display: none; }
+    body { background: white; color: black; }
+    .formula-row { background: white; border: 1px solid #ddd; }
+    .fcell.eq { color: #0066cc; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links, .nav-syllabus { display: none; }
+    .hamburger { display: flex; }
+
+    .formula-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .formula-row .fcell:nth-child(3),
+    .formula-row .fcell:nth-child(4) {
+      grid-column: span 1;
+    }
+
+    .support-grid { grid-template-columns: 1fr; }
+
+    .hero-stats { gap: 1.5rem; }
+
+    .hero-stats .stat-num { font-size: 1.4rem; }
+
+    nav { padding: 0 1rem; }
+    section { padding: 3rem 1rem; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+  /* MISCONCEPTIONS */
+  .misconception-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .misconception-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .misconception-q {
+    padding: 0.9rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.15s;
+  }
+
+  .misconception-q:hover { background: rgba(59,130,246,0.05); }
+
+  .misconception-q .toggle {
+    font-size: 1rem;
+    color: var(--blue-light);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .misconception-a {
+    display: none;
+    padding: 0 1rem 0.9rem;
+    font-size: 0.84rem;
+    color: var(--white-dim);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+  }
+
+  .misconception-item.open .toggle { transform: rotate(45deg); }
+  .misconception-item.open .misconception-a { display: block; }
+
+  /* CHECKLIST */
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.84rem;
+    color: var(--white-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .check-item:hover {
+    background: rgba(59,130,246,0.06);
+    border-color: rgba(59,130,246,0.2);
+  }
+
+  .check-item.checked {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.2);
+    color: var(--sl);
+  }
+
+  .check-box {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--white-dimmer);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    transition: all 0.15s;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--sl);
+    border-color: var(--sl);
+    color: white;
+  }
+  /* THEME SWITCHER */
+  .theme-switcher {
+    position: relative;
+  }
+
+  .theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--white-dim);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-bright);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .theme-btn:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .theme-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .theme-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: rgba(10,15,30,0.97);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-bright);
+    border-radius: 10px;
+    padding: 0.4rem;
+    min-width: 160px;
+    z-index: 200;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .theme-menu.open { display: block; }
+
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    color: var(--white-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .theme-option:hover {
+    background: rgba(255,255,255,0.07);
+    color: var(--white);
+  }
+
+  .theme-option.active {
+    background: rgba(59,130,246,0.12);
+    color: var(--white);
+  }
+
+  .theme-swatch {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  /* LIGHT MODE overrides */
+  body.theme-light {
+    --navy: #f8fafc;
+    --navy-2: #f1f5f9;
+    --navy-3: #e2e8f0;
+    --navy-4: #cbd5e1;
+    --navy-5: #94a3b8;
+    --white: #0f172a;
+    --white-dim: #334155;
+    --white-dimmer: #64748b;
+    --card-bg: rgba(255,255,255,0.9);
+    --border: rgba(37,99,235,0.15);
+    --border-bright: rgba(37,99,235,0.3);
+    --gold: #b45309;
+  }
+
+  body.theme-light nav {
+    background: rgba(248,250,252,0.92);
+  }
+
+  body.theme-light .theme-menu {
+    background: rgba(248,250,252,0.97);
+  }
+
+  /* DARK PURPLE */
+  body.theme-purple {
+    --navy: #0d0a1e;
+    --navy-2: #120f28;
+    --navy-3: #1a1535;
+    --navy-4: #221c44;
+    --navy-5: #2d2558;
+    --blue: #7c3aed;
+    --blue-light: #a78bfa;
+    --cyan: #c084fc;
+    --cyan-light: #e9d5ff;
+    --card-bg: rgba(18,15,40,0.85);
+    --border: rgba(124,58,237,0.2);
+    --border-bright: rgba(124,58,237,0.4);
+  }
+
+  body.theme-purple .orb-1 {
+    background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+  }
+
+  /* DARK GREEN */
+  body.theme-green {
+    --navy: #0a1a0f;
+    --navy-2: #0d2114;
+    --navy-3: #112b1a;
+    --navy-4: #163821;
+    --navy-5: #1c4728;
+    --blue: #059669;
+    --blue-light: #34d399;
+    --cyan: #6ee7b7;
+    --cyan-light: #a7f3d0;
+    --card-bg: rgba(10,26,15,0.85);
+    --border: rgba(5,150,105,0.2);
+    --border-bright: rgba(5,150,105,0.4);
+  }
+
+  body.theme-green .orb-1 {
+    background: radial-gradient(circle, rgba(5,150,105,0.1) 0%, transparent 70%);
+  }
+
+  /* BLACK & GREY */
+  body.theme-black {
+    --navy: #0a0a0a;
+    --navy-2: #111111;
+    --navy-3: #1a1a1a;
+    --navy-4: #222222;
+    --navy-5: #2e2e2e;
+    --blue: #6b7280;
+    --blue-light: #9ca3af;
+    --cyan: #d1d5db;
+    --cyan-light: #f3f4f6;
+    --card-bg: rgba(17,17,17,0.9);
+    --border: rgba(107,114,128,0.2);
+    --border-bright: rgba(107,114,128,0.4);
+    --gold: #9ca3af;
+  }
+
+  body.theme-black .orb-1, body.theme-black .orb-2, body.theme-black .orb-3 {
+    display: none;
+  }
 </style>
-
 </head>
 <body>
 
@@ -1308,7 +1275,6 @@ display: none;
 <div class="orb orb-3"></div>
 
 <!-- NAV -->
-
 <nav>
   <a href="#" class="nav-logo">IB<span>Physics</span>Hub</a>
   <ul class="nav-links">
@@ -1350,7 +1316,6 @@ display: none;
 </nav>
 
 <!-- HERO -->
-
 <div class="hero">
   <div class="hero-content">
     <div class="hero-badge">IB DP Physics · SL & HL · 2023–2028 Syllabus</div>
@@ -1387,9 +1352,8 @@ display: none;
 <hr class="section-divider">
 
 <!-- FORMULA SHEET -->
-
 <section id="formulas">
-
+  
   <h2>Annotated Formula Sheet</h2>
   <p class="section-desc">Every equation from the 2023–2028 data booklet. Variables defined, SI units included, SL/HL clearly marked.</p>
 
@@ -1403,7 +1367,6 @@ display: none;
   </div>
 
   <!-- TOPIC A -->
-
   <div class="topic-panel active" id="panel-A">
     <div class="formula-grid">
       <div class="formula-row header">
@@ -1413,209 +1376,205 @@ display: none;
         <div class="fcell">Level</div>
       </div>
 
-```
-  <div class="subtopic-header">A.1 · Kinematics</div>
-  <div class="formula-row">
-    <div class="fcell eq">$s = \dfrac{1}{2}(u+v)t$</div>
-    <div class="fcell vars">s = displacement (m), u = initial velocity (m/s), v = final velocity (m/s), t = time (s)</div>
-    <div class="fcell note">Only valid for uniform acceleration</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$v = u + at$</div>
-    <div class="fcell vars">a = acceleration (m/s²)</div>
-    <div class="fcell note">Uniform acceleration only</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$s = ut + \dfrac{1}{2}at^2$</div>
-    <div class="fcell vars">s = displacement (m)</div>
-    <div class="fcell note">Use when v is unknown</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$v^2 = u^2 + 2as$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Use when t is unknown</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$v = \dfrac{2\pi r}{T} = \omega r$</div>
-    <div class="fcell vars">r = radius (m), T = period (s), ω = angular velocity (rad/s)</div>
-    <div class="fcell note">Circular motion speed</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$a = \dfrac{v^2}{r} = \omega^2 r$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Centripetal acceleration, directed inward</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">A.1 · Kinematics</div>
+      <div class="formula-row">
+        <div class="fcell eq">s = ½(u+v)t</div>
+        <div class="fcell vars">s = displacement (m), u = initial velocity (m/s), v = final velocity (m/s), t = time (s)</div>
+        <div class="fcell note">Only valid for uniform acceleration</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">v = u + at</div>
+        <div class="fcell vars">a = acceleration (m/s²)</div>
+        <div class="fcell note">Uniform acceleration only</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">s = ut + ½at²</div>
+        <div class="fcell vars">s = displacement (m)</div>
+        <div class="fcell note">Use when v is unknown</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">v² = u² + 2as</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Use when t is unknown</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">v = 2πr/T = ωr</div>
+        <div class="fcell vars">r = radius (m), T = period (s), ω = angular velocity (rad/s)</div>
+        <div class="fcell note">Circular motion speed</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">a = v²/r = ω²r</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Centripetal acceleration, directed inward</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">A.2 · Forces and Momentum</div>
-  <div class="formula-row">
-    <div class="fcell eq">$F = ma = \dfrac{\Delta p}{\Delta t}$</div>
-    <div class="fcell vars">F = force (N), m = mass (kg), p = momentum (kg·m/s)</div>
-    <div class="fcell note">Newton's 2nd law; F is net force</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$p = mv$</div>
-    <div class="fcell vars">p = momentum (kg·m/s)</div>
-    <div class="fcell note">Linear momentum; vector quantity</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$J = F\Delta t = \Delta p$</div>
-    <div class="fcell vars">J = impulse (N·s)</div>
-    <div class="fcell note">Impulse = change in momentum</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F_f \leq \mu_s F_N$</div>
-    <div class="fcell vars">Ff = friction force (N), μs = static friction coefficient, FN = normal force (N)</div>
-    <div class="fcell note">Static friction; equality at impending motion</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F_f = \mu_d F_N$</div>
-    <div class="fcell vars">μd = kinetic friction coefficient</div>
-    <div class="fcell note">Kinetic friction (moving objects)</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F_H = -kx$</div>
-    <div class="fcell vars">k = spring constant (N/m), x = extension (m)</div>
-    <div class="fcell note">Hooke's Law; negative = restoring force</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F_d = 6\pi\eta rv$</div>
-    <div class="fcell vars">η = viscosity (Pa·s), r = radius (m), v = velocity (m/s)</div>
-    <div class="fcell note">Stokes' drag on sphere</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F_b = \rho V g$</div>
-    <div class="fcell vars">ρ = fluid density (kg/m³), V = submerged volume (m³)</div>
-    <div class="fcell note">Buoyancy force (Archimedes)</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">A.2 · Forces and Momentum</div>
+      <div class="formula-row">
+        <div class="fcell eq">F = ma = Δp/Δt</div>
+        <div class="fcell vars">F = force (N), m = mass (kg), p = momentum (kg·m/s)</div>
+        <div class="fcell note">Newton's 2nd law; F is net force</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">p = mv</div>
+        <div class="fcell vars">p = momentum (kg·m/s)</div>
+        <div class="fcell note">Linear momentum; vector quantity</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">J = FΔt = Δp</div>
+        <div class="fcell vars">J = impulse (N·s)</div>
+        <div class="fcell note">Impulse = change in momentum</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ff ≤ μsFN</div>
+        <div class="fcell vars">Ff = friction force (N), μs = static friction coefficient, FN = normal force (N)</div>
+        <div class="fcell note">Static friction; equality at impending motion</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ff = μdFN</div>
+        <div class="fcell vars">μd = kinetic friction coefficient</div>
+        <div class="fcell note">Kinetic friction (moving objects)</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">FH = −kx</div>
+        <div class="fcell vars">k = spring constant (N/m), x = extension (m)</div>
+        <div class="fcell note">Hooke's Law; negative = restoring force</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Fd = 6πηrv</div>
+        <div class="fcell vars">η = viscosity (Pa·s), r = radius (m), v = velocity (m/s)</div>
+        <div class="fcell note">Stokes' drag on sphere</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Fb = ρVg</div>
+        <div class="fcell vars">ρ = fluid density (kg/m³), V = submerged volume (m³)</div>
+        <div class="fcell note">Buoyancy force (Archimedes)</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">A.3 · Work, Energy and Power</div>
-  <div class="formula-row">
-    <div class="fcell eq">$W = Fs\cos\theta$</div>
-    <div class="fcell vars">W = work (J), F = force (N), s = displacement (m), θ = angle between F and s</div>
-    <div class="fcell note">Only component along displacement does work</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_k = \dfrac{1}{2}mv^2 = \dfrac{p^2}{2m}$</div>
-    <div class="fcell vars">Ek = kinetic energy (J)</div>
-    <div class="fcell note">Second form useful when momentum is known</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\Delta E_p = mg\Delta h$</div>
-    <div class="fcell vars">g = 9.8 m/s², Δh = height change (m)</div>
-    <div class="fcell note">Gravitational PE near Earth's surface only</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_H = \dfrac{1}{2}kx^2$</div>
-    <div class="fcell vars">k = spring constant (N/m), x = compression/extension (m)</div>
-    <div class="fcell note">Elastic potential energy stored in spring</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$P = \dfrac{\Delta W}{\Delta t} = Fv$</div>
-    <div class="fcell vars">P = power (W)</div>
-    <div class="fcell note">Second form for constant force and velocity</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\eta = \dfrac{W_{out}}{W_{in}}$</div>
-    <div class="fcell vars">η = efficiency (dimensionless, 0–1)</div>
-    <div class="fcell note">Can also use power ratio; never > 1</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\tau = Fr\sin\theta$</div>
-    <div class="fcell vars">τ = torque (N·m), r = moment arm (m)</div>
-    <div class="fcell note">θ between F and r; equilibrium: Στ = 0</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">A.3 · Work, Energy and Power</div>
+      <div class="formula-row">
+        <div class="fcell eq">W = Fs cosθ</div>
+        <div class="fcell vars">W = work (J), F = force (N), s = displacement (m), θ = angle between F and s</div>
+        <div class="fcell note">Only component along displacement does work</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ek = ½mv² = p²/2m</div>
+        <div class="fcell vars">Ek = kinetic energy (J)</div>
+        <div class="fcell note">Second form useful when momentum is known</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ΔEp = mgΔh</div>
+        <div class="fcell vars">g = 9.8 m/s², Δh = height change (m)</div>
+        <div class="fcell note">Gravitational PE near Earth's surface only</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">EH = ½kx²</div>
+        <div class="fcell vars">k = spring constant (N/m), x = compression/extension (m)</div>
+        <div class="fcell note">Elastic potential energy stored in spring</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">P = ΔW/Δt = Fv</div>
+        <div class="fcell vars">P = power (W)</div>
+        <div class="fcell note">Second form for constant force and velocity</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">η = useful Wout / total Win</div>
+        <div class="fcell vars">η = efficiency (dimensionless, 0–1)</div>
+        <div class="fcell note">Can also use power ratio; never > 1</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">τ = Fr sinθ</div>
+        <div class="fcell vars">τ = torque (N·m), r = moment arm (m)</div>
+        <div class="fcell note">θ between F and r; equilibrium: Στ = 0</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">A.4 · Rigid Body Mechanics (HL only)</div>
-  <div class="formula-row">
-    <div class="fcell eq">$I = \Sigma mr^2$</div>
-    <div class="fcell vars">I = moment of inertia (kg·m²)</div>
-    <div class="fcell note">Sum over all mass elements</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\tau = I\alpha$</div>
-    <div class="fcell vars">α = angular acceleration (rad/s²)</div>
-    <div class="fcell note">Rotational analogue of F = ma</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$L = I\omega$</div>
-    <div class="fcell vars">L = angular momentum (kg·m²/s)</div>
-    <div class="fcell note">Conserved when no external torque</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\Delta L = \tau \Delta t$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Angular impulse = change in angular momentum</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_k = \dfrac{1}{2}I\omega^2$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Rotational kinetic energy</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\omega_f = \omega_i + \alpha t$</div>
-    <div class="fcell vars">ωi = initial angular velocity (rad/s), ωf = final (rad/s)</div>
-    <div class="fcell note">Rotational kinematic equations; analogous to linear</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
+      <div class="subtopic-header">A.4 · Rigid Body Mechanics (HL only)</div>
+      <div class="formula-row">
+        <div class="fcell eq">I = Σmr²</div>
+        <div class="fcell vars">I = moment of inertia (kg·m²)</div>
+        <div class="fcell note">Sum over all mass elements</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">τ = Iα</div>
+        <div class="fcell vars">α = angular acceleration (rad/s²)</div>
+        <div class="fcell note">Rotational analogue of F = ma</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">L = Iω</div>
+        <div class="fcell vars">L = angular momentum (kg·m²/s)</div>
+        <div class="fcell note">Conserved when no external torque</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ΔL = τΔt</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Angular impulse = change in angular momentum</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ek = ½Iω²</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Rotational kinetic energy</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ωf = ωi + αt</div>
+        <div class="fcell vars">ωi = initial angular velocity (rad/s), ωf = final (rad/s)</div>
+        <div class="fcell note">Rotational kinematic equations; analogous to linear</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
 
-  <div class="subtopic-header">A.5 · Galilean and Special Relativity (HL only)</div>
-  <div class="formula-row">
-    <div class="fcell eq">$\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}$</div>
-    <div class="fcell vars">γ = Lorentz factor (dimensionless), v = relative velocity (m/s), c = 3×10⁸ m/s</div>
-    <div class="fcell note">γ ≥ 1; approaches infinity as v → c</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\Delta t = \gamma \Delta t_0$</div>
-    <div class="fcell vars">Δt₀ = proper time (s) — measured by observer at rest relative to event</div>
-    <div class="fcell note">Moving clocks run slow (time dilation)</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$L = \dfrac{L_0}{\gamma}$</div>
-    <div class="fcell vars">L₀ = proper length (m) — measured in rest frame</div>
-    <div class="fcell note">Length contracts in direction of motion</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$(\Delta s)^2 = (c\Delta t)^2 - (\Delta x)^2$</div>
-    <div class="fcell vars">Δs = spacetime interval (m)</div>
-    <div class="fcell note">Invariant quantity for all inertial observers</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-</div>
-```
-
+      <div class="subtopic-header">A.5 · Galilean and Special Relativity (HL only)</div>
+      <div class="formula-row">
+        <div class="fcell eq">γ = 1/√(1−v²/c²)</div>
+        <div class="fcell vars">γ = Lorentz factor (dimensionless), v = relative velocity (m/s), c = 3×10⁸ m/s</div>
+        <div class="fcell note">γ ≥ 1; approaches infinity as v → c</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Δt = γΔt₀</div>
+        <div class="fcell vars">Δt₀ = proper time (s) — measured by observer at rest relative to event</div>
+        <div class="fcell note">Moving clocks run slow (time dilation)</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">L = L₀/γ</div>
+        <div class="fcell vars">L₀ = proper length (m) — measured in rest frame</div>
+        <div class="fcell note">Length contracts in direction of motion</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">(Δs)² = (cΔt)² − (Δx)²</div>
+        <div class="fcell vars">Δs = spacetime interval (m)</div>
+        <div class="fcell note">Invariant quantity for all inertial observers</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- TOPIC B -->
-
   <div class="topic-panel" id="panel-B">
     <div class="formula-grid">
       <div class="formula-row header">
@@ -1625,173 +1584,169 @@ display: none;
         <div class="fcell">Level</div>
       </div>
 
-```
-  <div class="subtopic-header">B.1 · Thermal Energy Transfers</div>
-  <div class="formula-row">
-    <div class="fcell eq">$Q = mc\Delta T$</div>
-    <div class="fcell vars">Q = heat energy (J), m = mass (kg), c = specific heat capacity (J/kg·K), ΔT = temperature change (K)</div>
-    <div class="fcell note">No phase change; c depends on material</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$Q = mL$</div>
-    <div class="fcell vars">L = specific latent heat (J/kg)</div>
-    <div class="fcell note">Phase change at constant T; Lf (fusion), Lv (vaporisation)</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\dfrac{\Delta Q}{\Delta t} = kA\dfrac{\Delta T}{\Delta x}$</div>
-    <div class="fcell vars">k = thermal conductivity (W/m·K), A = area (m²), Δx = thickness (m)</div>
-    <div class="fcell note">Conduction rate through a slab</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$L = \sigma A T^4$</div>
-    <div class="fcell vars">L = luminosity (W), σ = 5.67×10⁻⁸ W/m²K⁴, A = surface area (m²), T = temperature (K)</div>
-    <div class="fcell note">Stefan-Boltzmann law; black body radiation</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\lambda_{max} T = 2.9\times10^{-3}\ \text{m·K}$</div>
-    <div class="fcell vars">λmax = peak wavelength (m), T = temperature (K)</div>
-    <div class="fcell note">Wien's displacement law</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_k = \dfrac{3}{2}k_B T$</div>
-    <div class="fcell vars">kB = 1.38×10⁻²³ J/K, T = absolute temperature (K)</div>
-    <div class="fcell note">Mean KE of ideal gas molecule</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">B.1 · Thermal Energy Transfers</div>
+      <div class="formula-row">
+        <div class="fcell eq">Q = mcΔT</div>
+        <div class="fcell vars">Q = heat energy (J), m = mass (kg), c = specific heat capacity (J/kg·K), ΔT = temperature change (K)</div>
+        <div class="fcell note">No phase change; c depends on material</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Q = mL</div>
+        <div class="fcell vars">L = specific latent heat (J/kg)</div>
+        <div class="fcell note">Phase change at constant T; Lf (fusion), Lv (vaporisation)</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ΔQ/Δt = kAΔT/Δx</div>
+        <div class="fcell vars">k = thermal conductivity (W/m·K), A = area (m²), Δx = thickness (m)</div>
+        <div class="fcell note">Conduction rate through a slab</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">L = σAT⁴</div>
+        <div class="fcell vars">L = luminosity (W), σ = 5.67×10⁻⁸ W/m²K⁴, A = surface area (m²), T = temperature (K)</div>
+        <div class="fcell note">Stefan-Boltzmann law; black body radiation</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">λmaxT = 2.9×10⁻³ m·K</div>
+        <div class="fcell vars">λmax = peak wavelength (m), T = temperature (K)</div>
+        <div class="fcell note">Wien's displacement law</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ek = (3/2)kBT</div>
+        <div class="fcell vars">kB = 1.38×10⁻²³ J/K, T = absolute temperature (K)</div>
+        <div class="fcell note">Mean KE of ideal gas molecule</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">B.2 · Greenhouse Effect</div>
-  <div class="formula-row">
-    <div class="fcell eq">$b = \dfrac{L}{4\pi d^2}$</div>
-    <div class="fcell vars">b = apparent brightness (W/m²), L = luminosity (W), d = distance (m)</div>
-    <div class="fcell note">Inverse square law for radiation</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\text{albedo} = \dfrac{\text{scattered}}{\text{incident}}$</div>
-    <div class="fcell vars">dimensionless (0–1)</div>
-    <div class="fcell note">Earth's average albedo ≈ 0.30</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\varepsilon = \dfrac{\text{radiated}}{\sigma T^4}$</div>
-    <div class="fcell vars">Ratio of power emitted vs. perfect black body</div>
-    <div class="fcell note">ε = 1 for perfect black body; < 1 for real surfaces</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">B.2 · Greenhouse Effect</div>
+      <div class="formula-row">
+        <div class="fcell eq">b = L / (4πd²)</div>
+        <div class="fcell vars">b = apparent brightness (W/m²), L = luminosity (W), d = distance (m)</div>
+        <div class="fcell note">Inverse square law for radiation</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">albedo = scattered/incident</div>
+        <div class="fcell vars">dimensionless (0–1)</div>
+        <div class="fcell note">Earth's average albedo ≈ 0.30</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">emissivity = radiated / σT⁴</div>
+        <div class="fcell vars">Ratio of power emitted vs. perfect black body</div>
+        <div class="fcell note">ε = 1 for perfect black body; < 1 for real surfaces</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">B.3 · Gas Laws</div>
-  <div class="formula-row">
-    <div class="fcell eq">$PV = nRT = Nk_BT$</div>
-    <div class="fcell vars">P = pressure (Pa), V = volume (m³), n = moles (mol), R = 8.31 J/mol·K, N = number of molecules</div>
-    <div class="fcell note">Ideal gas equation; combines Boyle's, Charles's, Gay-Lussac's</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\dfrac{PV}{T} = \text{const}$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Combined gas law for fixed amount of gas</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$P = \dfrac{\rho v^2}{3}$</div>
-    <div class="fcell vars">ρ = gas density (kg/m³), v = rms speed (m/s)</div>
-    <div class="fcell note">Kinetic model of gases</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$U = \dfrac{3}{2}nRT$</div>
-    <div class="fcell vars">U = internal energy (J)</div>
-    <div class="fcell note">Monatomic ideal gas only</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">B.3 · Gas Laws</div>
+      <div class="formula-row">
+        <div class="fcell eq">PV = nRT = NkBT</div>
+        <div class="fcell vars">P = pressure (Pa), V = volume (m³), n = moles (mol), R = 8.31 J/mol·K, N = number of molecules</div>
+        <div class="fcell note">Ideal gas equation; combines Boyle's, Charles's, Gay-Lussac's</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">PV/T = constant</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Combined gas law for fixed amount of gas</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">P = ρv²/3</div>
+        <div class="fcell vars">ρ = gas density (kg/m³), v = rms speed (m/s)</div>
+        <div class="fcell note">Kinetic model of gases</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">U = (3/2)nRT</div>
+        <div class="fcell vars">U = internal energy (J)</div>
+        <div class="fcell note">Monatomic ideal gas only</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">B.4 · Thermodynamics (HL only)</div>
-  <div class="formula-row">
-    <div class="fcell eq">$Q = \Delta U + W$</div>
-    <div class="fcell vars">Q = heat added (J), ΔU = internal energy change (J), W = work done by gas (J)</div>
-    <div class="fcell note">First Law of Thermodynamics; sign convention matters</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$W = P\Delta V$</div>
-    <div class="fcell vars">W = work by gas (J)</div>
-    <div class="fcell note">Isobaric (constant pressure) process only</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\Delta S = \dfrac{\Delta Q}{T}$</div>
-    <div class="fcell vars">ΔS = entropy change (J/K), T = absolute temperature (K)</div>
-    <div class="fcell note">Reversible process; ΔS ≥ 0 for universe</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\eta_{Carnot} = 1 - \dfrac{T_c}{T_h}$</div>
-    <div class="fcell vars">Tc = cold reservoir temperature (K), Th = hot reservoir temperature (K)</div>
-    <div class="fcell note">Maximum possible efficiency; must use Kelvin</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
+      <div class="subtopic-header">B.4 · Thermodynamics (HL only)</div>
+      <div class="formula-row">
+        <div class="fcell eq">Q = ΔU + W</div>
+        <div class="fcell vars">Q = heat added (J), ΔU = internal energy change (J), W = work done by gas (J)</div>
+        <div class="fcell note">First Law of Thermodynamics; sign convention matters</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">W = PΔV</div>
+        <div class="fcell vars">W = work by gas (J)</div>
+        <div class="fcell note">Isobaric (constant pressure) process only</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ΔS = ΔQ/T</div>
+        <div class="fcell vars">ΔS = entropy change (J/K), T = absolute temperature (K)</div>
+        <div class="fcell note">Reversible process; ΔS ≥ 0 for universe</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ηCarnot = 1 − Tc/Th</div>
+        <div class="fcell vars">Tc = cold reservoir temperature (K), Th = hot reservoir temperature (K)</div>
+        <div class="fcell note">Maximum possible efficiency; must use Kelvin</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
 
-  <div class="subtopic-header">B.5 · Current and Circuits</div>
-  <div class="formula-row">
-    <div class="fcell eq">$I = \dfrac{\Delta q}{\Delta t}$</div>
-    <div class="fcell vars">I = current (A), q = charge (C), t = time (s)</div>
-    <div class="fcell note">Definition of current; conventional: positive charge flow</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$V = \dfrac{W}{q}$</div>
-    <div class="fcell vars">V = voltage (V), W = work done (J)</div>
-    <div class="fcell note">Potential difference = energy per unit charge</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$R = \dfrac{V}{I}$</div>
-    <div class="fcell vars">R = resistance (Ω)</div>
-    <div class="fcell note">Ohm's Law; only valid for ohmic conductors</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$R = \dfrac{\rho L}{A}$</div>
-    <div class="fcell vars">ρ = resistivity (Ω·m), L = length (m), A = cross-section area (m²)</div>
-    <div class="fcell note">Resistivity depends on material and temperature</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$P = IV = I^2R = \dfrac{V^2}{R}$</div>
-    <div class="fcell vars">P = power (W)</div>
-    <div class="fcell note">Three equivalent forms; use based on what's known</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$R_s = R_1 + R_2 + \ldots$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Series: same current, voltages add</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\dfrac{1}{R_p} = \dfrac{1}{R_1} + \dfrac{1}{R_2} + \ldots$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Parallel: same voltage, currents add</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\varepsilon = I(R + r)$</div>
-    <div class="fcell vars">ε = emf (V), r = internal resistance (Ω)</div>
-    <div class="fcell note">Terminal voltage = ε − Ir (drops when current flows)</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-</div>
-```
-
+      <div class="subtopic-header">B.5 · Current and Circuits</div>
+      <div class="formula-row">
+        <div class="fcell eq">I = Δq/Δt</div>
+        <div class="fcell vars">I = current (A), q = charge (C), t = time (s)</div>
+        <div class="fcell note">Definition of current; conventional: positive charge flow</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">V = W/q</div>
+        <div class="fcell vars">V = voltage (V), W = work done (J)</div>
+        <div class="fcell note">Potential difference = energy per unit charge</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">R = V/I</div>
+        <div class="fcell vars">R = resistance (Ω)</div>
+        <div class="fcell note">Ohm's Law; only valid for ohmic conductors</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">R = ρL/A</div>
+        <div class="fcell vars">ρ = resistivity (Ω·m), L = length (m), A = cross-section area (m²)</div>
+        <div class="fcell note">Resistivity depends on material and temperature</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">P = IV = I²R = V²/R</div>
+        <div class="fcell vars">P = power (W)</div>
+        <div class="fcell note">Three equivalent forms; use based on what's known</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Rs = R1 + R2 + …</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Series: same current, voltages add</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">1/Rp = 1/R1 + 1/R2 + …</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Parallel: same voltage, currents add</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ε = I(R + r)</div>
+        <div class="fcell vars">ε = emf (V), r = internal resistance (Ω)</div>
+        <div class="fcell note">Terminal voltage = ε − Ir (drops when current flows)</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- TOPIC C -->
-
   <div class="topic-panel" id="panel-C">
     <div class="formula-grid">
       <div class="formula-row header">
@@ -1801,117 +1756,113 @@ display: none;
         <div class="fcell">Level</div>
       </div>
 
-```
-  <div class="subtopic-header">C.1 · Simple Harmonic Motion</div>
-  <div class="formula-row">
-    <div class="fcell eq">$a = -\omega^2 x$</div>
-    <div class="fcell vars">ω = angular frequency (rad/s), x = displacement (m)</div>
-    <div class="fcell note">Defining equation of SHM; acceleration always toward equilibrium</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$T = \dfrac{1}{f} = \dfrac{2\pi}{\omega}$</div>
-    <div class="fcell vars">T = period (s), f = frequency (Hz)</div>
-    <div class="fcell note">—</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$T = 2\pi\sqrt{\dfrac{m}{k}}$</div>
-    <div class="fcell vars">m = mass (kg), k = spring constant (N/m)</div>
-    <div class="fcell note">Mass-spring system period; independent of amplitude</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$T = 2\pi\sqrt{\dfrac{l}{g}}$</div>
-    <div class="fcell vars">l = pendulum length (m), g = 9.8 m/s²</div>
-    <div class="fcell note">Simple pendulum; valid for small angles only (&lt;10°)</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$x = x_0 \sin(\omega t + \varphi)$</div>
-    <div class="fcell vars">x₀ = amplitude (m), φ = initial phase (rad)</div>
-    <div class="fcell note">HL: can also be cos form depending on initial conditions</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$v = \pm\omega\sqrt{x_0^2 - x^2}$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Max speed at x = 0; zero speed at x = ±x₀</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_T = \dfrac{1}{2}m\omega^2 x_0^2$</div>
-    <div class="fcell vars">ET = total mechanical energy (J)</div>
-    <div class="fcell note">Constant in undamped SHM</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
+      <div class="subtopic-header">C.1 · Simple Harmonic Motion</div>
+      <div class="formula-row">
+        <div class="fcell eq">a = −ω²x</div>
+        <div class="fcell vars">ω = angular frequency (rad/s), x = displacement (m)</div>
+        <div class="fcell note">Defining equation of SHM; acceleration always toward equilibrium</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">T = 1/f = 2π/ω</div>
+        <div class="fcell vars">T = period (s), f = frequency (Hz)</div>
+        <div class="fcell note">—</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">T = 2π√(m/k)</div>
+        <div class="fcell vars">m = mass (kg), k = spring constant (N/m)</div>
+        <div class="fcell note">Mass-spring system period; independent of amplitude</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">T = 2π√(l/g)</div>
+        <div class="fcell vars">l = pendulum length (m), g = 9.8 m/s²</div>
+        <div class="fcell note">Simple pendulum; valid for small angles only (&lt;10°)</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">x = x₀ sin(ωt + φ)</div>
+        <div class="fcell vars">x₀ = amplitude (m), φ = initial phase (rad)</div>
+        <div class="fcell note">HL: can also be cos form depending on initial conditions</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">v = ±ω√(x₀² − x²)</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Max speed at x = 0; zero speed at x = ±x₀</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ET = ½mω²x₀²</div>
+        <div class="fcell vars">ET = total mechanical energy (J)</div>
+        <div class="fcell note">Constant in undamped SHM</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
 
-  <div class="subtopic-header">C.2 · Wave Model</div>
-  <div class="formula-row">
-    <div class="fcell eq">$v = f\lambda = \dfrac{\lambda}{T}$</div>
-    <div class="fcell vars">v = wave speed (m/s), λ = wavelength (m)</div>
-    <div class="fcell note">Universal wave equation</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$n = \dfrac{\sin\theta_1}{\sin\theta_2} = \dfrac{v_1}{v_2}$</div>
-    <div class="fcell vars">n = refractive index, θ₁ = angle of incidence, θ₂ = angle of refraction</div>
-    <div class="fcell note">Snell's Law; n = c/v for each medium</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">C.2 · Wave Model</div>
+      <div class="formula-row">
+        <div class="fcell eq">v = fλ = λ/T</div>
+        <div class="fcell vars">v = wave speed (m/s), λ = wavelength (m)</div>
+        <div class="fcell note">Universal wave equation</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">n = sin θ₁ / sin θ₂ = v₁/v₂</div>
+        <div class="fcell vars">n = refractive index, θ₁ = angle of incidence, θ₂ = angle of refraction</div>
+        <div class="fcell note">Snell's Law; n = c/v for each medium</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">C.3 · Wave Phenomena</div>
-  <div class="formula-row">
-    <div class="fcell eq">$\text{constructive: } \Delta d = n\lambda$</div>
-    <div class="fcell vars">n = 0, ±1, ±2…</div>
-    <div class="fcell note">Waves in phase; amplitude adds</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\text{destructive: } \Delta d = (n+\tfrac{1}{2})\lambda$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Waves out of phase; cancel</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$s = \dfrac{\lambda D}{d}$</div>
-    <div class="fcell vars">s = fringe spacing (m), D = screen distance (m), d = slit separation (m)</div>
-    <div class="fcell note">Double slit; small angle approximation</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\theta = \dfrac{\lambda}{b}$</div>
-    <div class="fcell vars">θ = first minimum angle (rad), b = slit width (m)</div>
-    <div class="fcell note">Single slit diffraction minimum</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$n\lambda = d\sin\theta$</div>
-    <div class="fcell vars">d = grating spacing (m), n = order number</div>
-    <div class="fcell note">Diffraction grating maxima</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
+      <div class="subtopic-header">C.3 · Wave Phenomena</div>
+      <div class="formula-row">
+        <div class="fcell eq">constructive: path diff = nλ</div>
+        <div class="fcell vars">n = 0, ±1, ±2…</div>
+        <div class="fcell note">Waves in phase; amplitude adds</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">destructive: path diff = (n+½)λ</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Waves out of phase; cancel</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">s = λD/d</div>
+        <div class="fcell vars">s = fringe spacing (m), D = screen distance (m), d = slit separation (m)</div>
+        <div class="fcell note">Double slit; small angle approximation</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">θ = λ/b</div>
+        <div class="fcell vars">θ = first minimum angle (rad), b = slit width (m)</div>
+        <div class="fcell note">Single slit diffraction minimum</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">nλ = d sinθ</div>
+        <div class="fcell vars">d = grating spacing (m), n = order number</div>
+        <div class="fcell note">Diffraction grating maxima</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
 
-  <div class="subtopic-header">C.5 · Doppler Effect</div>
-  <div class="formula-row">
-    <div class="fcell eq">$f' = f\dfrac{v \pm u_s}{v}$</div>
-    <div class="fcell vars">f' = observed frequency (Hz), us = source speed (m/s)</div>
-    <div class="fcell note">Moving source: + when moving away, − when approaching</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\dfrac{\Delta f}{f} \approx \dfrac{\Delta\lambda}{\lambda} \approx \dfrac{v}{c}$</div>
-    <div class="fcell vars">v = recession speed (m/s)</div>
-    <div class="fcell note">Approximation for v &lt;&lt; c (astrophysics use)</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-</div>
-```
-
+      <div class="subtopic-header">C.5 · Doppler Effect</div>
+      <div class="formula-row">
+        <div class="fcell eq">f' = f(v ± us)/v</div>
+        <div class="fcell vars">f' = observed frequency (Hz), us = source speed (m/s)</div>
+        <div class="fcell note">Moving source: + when moving away, − when approaching</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Δf/f ≈ Δλ/λ ≈ v/c</div>
+        <div class="fcell vars">v = recession speed (m/s)</div>
+        <div class="fcell note">Approximation for v &lt;&lt; c (astrophysics use)</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- TOPIC D -->
-
   <div class="topic-panel" id="panel-D">
     <div class="formula-grid">
       <div class="formula-row header">
@@ -1921,109 +1872,105 @@ display: none;
         <div class="fcell">Level</div>
       </div>
 
-```
-  <div class="subtopic-header">D.1 · Gravitational Fields</div>
-  <div class="formula-row">
-    <div class="fcell eq">$F = \dfrac{Gm_1m_2}{r^2}$</div>
-    <div class="fcell vars">G = 6.67×10⁻¹¹ N·m²/kg², r = separation (m)</div>
-    <div class="fcell note">Newton's Law of Universal Gravitation; always attractive</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$g = \dfrac{F}{m} = \dfrac{GM}{r^2}$</div>
-    <div class="fcell vars">g = gravitational field strength (N/kg = m/s²)</div>
-    <div class="fcell note">g = 9.8 N/kg at Earth's surface</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_p = -\dfrac{Gm_1m_2}{r}$</div>
-    <div class="fcell vars">Ep = gravitational PE (J)</div>
-    <div class="fcell note">Negative! Zero at infinity; becomes more negative as objects approach</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$V_g = -\dfrac{GM}{r}$</div>
-    <div class="fcell vars">Vg = gravitational potential (J/kg)</div>
-    <div class="fcell note">Scalar; always negative; Ep = mVg</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$v_{esc} = \sqrt{\dfrac{2GM}{r}}$</div>
-    <div class="fcell vars">vesc = escape velocity (m/s)</div>
-    <div class="fcell note">Minimum speed to escape gravity; no propulsion after launch</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$v_{orb} = \sqrt{\dfrac{GM}{r}}$</div>
-    <div class="fcell vars">—</div>
-    <div class="fcell note">Circular orbit speed; from Fc = Fg</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">D.1 · Gravitational Fields</div>
+      <div class="formula-row">
+        <div class="fcell eq">F = Gm₁m₂/r²</div>
+        <div class="fcell vars">G = 6.67×10⁻¹¹ N·m²/kg², r = separation (m)</div>
+        <div class="fcell note">Newton's Law of Universal Gravitation; always attractive</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">g = F/m = GM/r²</div>
+        <div class="fcell vars">g = gravitational field strength (N/kg = m/s²)</div>
+        <div class="fcell note">g = 9.8 N/kg at Earth's surface</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ep = −Gm₁m₂/r</div>
+        <div class="fcell vars">Ep = gravitational PE (J)</div>
+        <div class="fcell note">Negative! Zero at infinity; becomes more negative as objects approach</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Vg = −GM/r</div>
+        <div class="fcell vars">Vg = gravitational potential (J/kg)</div>
+        <div class="fcell note">Scalar; always negative; Ep = mVg</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">vesc = √(2GM/r)</div>
+        <div class="fcell vars">vesc = escape velocity (m/s)</div>
+        <div class="fcell note">Minimum speed to escape gravity; no propulsion after launch</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">vorbital = √(GM/r)</div>
+        <div class="fcell vars">—</div>
+        <div class="fcell note">Circular orbit speed; from Fc = Fg</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">D.2 · Electric and Magnetic Fields</div>
-  <div class="formula-row">
-    <div class="fcell eq">$F = \dfrac{kq_1q_2}{r^2}$</div>
-    <div class="fcell vars">k = 8.99×10⁹ N·m²/C², q = charge (C)</div>
-    <div class="fcell note">Coulomb's Law; can be attractive or repulsive</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E = \dfrac{F}{q} = \dfrac{V}{d}$</div>
-    <div class="fcell vars">E = electric field (N/C = V/m), d = plate separation (m)</div>
-    <div class="fcell note">Second form for uniform field between parallel plates</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$V_e = \dfrac{kQ}{r}$</div>
-    <div class="fcell vars">Ve = electric potential (V), Q = source charge (C)</div>
-    <div class="fcell note">Scalar; can be positive or negative; W = qΔVe</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F = qvB\sin\theta$</div>
-    <div class="fcell vars">B = magnetic field strength (T), θ = angle between v and B</div>
-    <div class="fcell note">Lorentz force on moving charge; use right-hand rule</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$F = BIL\sin\theta$</div>
-    <div class="fcell vars">I = current (A), L = wire length (m)</div>
-    <div class="fcell note">Force on current-carrying conductor in magnetic field</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi r}$</div>
-    <div class="fcell vars">μ₀ = 4π×10⁻⁷ T·m/A, r = separation (m)</div>
-    <div class="fcell note">Force per unit length between parallel currents</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
+      <div class="subtopic-header">D.2 · Electric and Magnetic Fields</div>
+      <div class="formula-row">
+        <div class="fcell eq">F = kq₁q₂/r²</div>
+        <div class="fcell vars">k = 8.99×10⁹ N·m²/C², q = charge (C)</div>
+        <div class="fcell note">Coulomb's Law; can be attractive or repulsive</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">E = F/q = V/d</div>
+        <div class="fcell vars">E = electric field (N/C = V/m), d = plate separation (m)</div>
+        <div class="fcell note">Second form for uniform field between parallel plates</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Ve = kQ/r</div>
+        <div class="fcell vars">Ve = electric potential (V), Q = source charge (C)</div>
+        <div class="fcell note">Scalar; can be positive or negative; W = qΔVe</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">F = qvB sinθ</div>
+        <div class="fcell vars">B = magnetic field strength (T), θ = angle between v and B</div>
+        <div class="fcell note">Lorentz force on moving charge; use right-hand rule</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">F = BIL sinθ</div>
+        <div class="fcell vars">I = current (A), L = wire length (m)</div>
+        <div class="fcell note">Force on current-carrying conductor in magnetic field</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">F/L = μ₀I₁I₂/(2πr)</div>
+        <div class="fcell vars">μ₀ = 4π×10⁻⁷ T·m/A, r = separation (m)</div>
+        <div class="fcell note">Force per unit length between parallel currents</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
 
-  <div class="subtopic-header">D.4 · Induction (HL only)</div>
-  <div class="formula-row">
-    <div class="fcell eq">$\Phi = BA\cos\theta$</div>
-    <div class="fcell vars">Φ = magnetic flux (Wb = T·m²), θ = angle between B and normal to area</div>
-    <div class="fcell note">θ = 0 when B perpendicular to surface → max flux</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\varepsilon = -N\dfrac{\Delta\Phi}{\Delta t}$</div>
-    <div class="fcell vars">ε = induced emf (V), N = number of turns</div>
-    <div class="fcell note">Faraday's Law; negative sign = Lenz's Law (opposes change)</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\varepsilon = BvL$</div>
-    <div class="fcell vars">v = velocity of conductor (m/s), L = length (m)</div>
-    <div class="fcell note">EMF in straight conductor moving through field</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-</div>
-```
-
+      <div class="subtopic-header">D.4 · Induction (HL only)</div>
+      <div class="formula-row">
+        <div class="fcell eq">Φ = BA cosθ</div>
+        <div class="fcell vars">Φ = magnetic flux (Wb = T·m²), θ = angle between B and normal to area</div>
+        <div class="fcell note">θ = 0 when B perpendicular to surface → max flux</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ε = −NΔΦ/Δt</div>
+        <div class="fcell vars">ε = induced emf (V), N = number of turns</div>
+        <div class="fcell note">Faraday's Law; negative sign = Lenz's Law (opposes change)</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">ε = BvL</div>
+        <div class="fcell vars">v = velocity of conductor (m/s), L = length (m)</div>
+        <div class="fcell note">EMF in straight conductor moving through field</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- TOPIC E -->
-
   <div class="topic-panel" id="panel-E">
     <div class="formula-grid">
       <div class="formula-row header">
@@ -2033,87 +1980,83 @@ display: none;
         <div class="fcell">Level</div>
       </div>
 
-```
-  <div class="subtopic-header">E.1 · Structure of the Atom</div>
-  <div class="formula-row">
-    <div class="fcell eq">$E = hf$</div>
-    <div class="fcell vars">E = photon energy (J), h = 6.63×10⁻³⁴ J·s, f = frequency (Hz)</div>
-    <div class="fcell note">Quantised energy of photon; E = hc/λ equivalent</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_n = -\dfrac{13.6}{n^2}\ \text{eV}$</div>
-    <div class="fcell vars">n = energy level (integer ≥ 1)</div>
-    <div class="fcell note">Hydrogen atom only; ground state n=1: E = −13.6 eV</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$R = R_0 A^{1/3}$</div>
-    <div class="fcell vars">R = nuclear radius (m), R₀ = 1.20×10⁻¹⁵ m, A = nucleon number</div>
-    <div class="fcell note">Nuclear radius; implies constant nuclear density</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">E.1 · Structure of the Atom</div>
+      <div class="formula-row">
+        <div class="fcell eq">E = hf</div>
+        <div class="fcell vars">E = photon energy (J), h = 6.63×10⁻³⁴ J·s, f = frequency (Hz)</div>
+        <div class="fcell note">Quantised energy of photon; E = hc/λ equivalent</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">En = −13.6/n² eV</div>
+        <div class="fcell vars">n = energy level (integer ≥ 1)</div>
+        <div class="fcell note">Hydrogen atom only; ground state n=1: E = −13.6 eV</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">R = R₀A^(1/3)</div>
+        <div class="fcell vars">R = nuclear radius (m), R₀ = 1.20×10⁻¹⁵ m, A = nucleon number</div>
+        <div class="fcell note">Nuclear radius; implies constant nuclear density</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">E.2 · Quantum Physics (HL only)</div>
-  <div class="formula-row">
-    <div class="fcell eq">$E_{max} = hf - \Phi$</div>
-    <div class="fcell vars">Emax = max KE of photoelectron (J), Φ = work function (J)</div>
-    <div class="fcell note">Photoelectric effect; no emission if f &lt; threshold frequency</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\lambda = \dfrac{h}{p}$</div>
-    <div class="fcell vars">λ = de Broglie wavelength (m), p = momentum (kg·m/s)</div>
-    <div class="fcell note">Wave-particle duality; all matter has an associated wavelength</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$\Delta\lambda = \dfrac{h}{m_e c}(1-\cos\theta)$</div>
-    <div class="fcell vars">me = 9.11×10⁻³¹ kg, θ = scattering angle</div>
-    <div class="fcell note">Compton scattering; wavelength shift of scattered X-ray</div>
-    <div class="fcell"><span class="badge badge-hl">HL only</span></div>
-  </div>
+      <div class="subtopic-header">E.2 · Quantum Physics (HL only)</div>
+      <div class="formula-row">
+        <div class="fcell eq">Emax = hf − Φ</div>
+        <div class="fcell vars">Emax = max KE of photoelectron (J), Φ = work function (J)</div>
+        <div class="fcell note">Photoelectric effect; no emission if f &lt; threshold frequency</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">λ = h/p</div>
+        <div class="fcell vars">λ = de Broglie wavelength (m), p = momentum (kg·m/s)</div>
+        <div class="fcell note">Wave-particle duality; all matter has an associated wavelength</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">Δλ = (h/mec)(1 − cosθ)</div>
+        <div class="fcell vars">me = 9.11×10⁻³¹ kg, θ = scattering angle</div>
+        <div class="fcell note">Compton scattering; wavelength shift of scattered X-ray</div>
+        <div class="fcell"><span class="badge badge-hl">HL only</span></div>
+      </div>
 
-  <div class="subtopic-header">E.3 · Radioactive Decay</div>
-  <div class="formula-row">
-    <div class="fcell eq">$N = N_0 e^{-\lambda t}$</div>
-    <div class="fcell vars">N = number of nuclei remaining, N₀ = initial nuclei, λ = decay constant (s⁻¹)</div>
-    <div class="fcell note">Exponential decay; λ is not wavelength here — context matters</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$A = \lambda N = \lambda N_0 e^{-\lambda t}$</div>
-    <div class="fcell vars">A = activity (Bq = decays/s)</div>
-    <div class="fcell note">Activity also decays exponentially</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$T_{1/2} = \dfrac{\ln 2}{\lambda}$</div>
-    <div class="fcell vars">T½ = half-life (s)</div>
-    <div class="fcell note">Time for half the nuclei to decay; T½ = 0.693/λ</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-  <div class="formula-row">
-    <div class="fcell eq">$E = mc^2$</div>
-    <div class="fcell vars">E = energy (J), m = mass defect (kg)</div>
-    <div class="fcell note">Mass-energy equivalence; binding energy calculations</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
+      <div class="subtopic-header">E.3 · Radioactive Decay</div>
+      <div class="formula-row">
+        <div class="fcell eq">N = N₀e^(−λt)</div>
+        <div class="fcell vars">N = number of nuclei remaining, N₀ = initial nuclei, λ = decay constant (s⁻¹)</div>
+        <div class="fcell note">Exponential decay; λ is not wavelength here — context matters</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">A = λN = λN₀e^(−λt)</div>
+        <div class="fcell vars">A = activity (Bq = decays/s)</div>
+        <div class="fcell note">Activity also decays exponentially</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">T½ = ln2/λ</div>
+        <div class="fcell vars">T½ = half-life (s)</div>
+        <div class="fcell note">Time for half the nuclei to decay; T½ = 0.693/λ</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+      <div class="formula-row">
+        <div class="fcell eq">E = mc²</div>
+        <div class="fcell vars">E = energy (J), m = mass defect (kg)</div>
+        <div class="fcell note">Mass-energy equivalence; binding energy calculations</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
 
-  <div class="subtopic-header">E.5 · Fusion and Stars</div>
-  <div class="formula-row">
-    <div class="fcell eq">$d\ (\text{pc}) = \dfrac{1}{p\ (\text{arcsec})}$</div>
-    <div class="fcell vars">d = distance (parsecs), p = parallax angle (arcseconds)</div>
-    <div class="fcell note">Stellar parallax; 1 pc = 3.26 ly</div>
-    <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
-  </div>
-</div>
-```
-
+      <div class="subtopic-header">E.5 · Fusion and Stars</div>
+      <div class="formula-row">
+        <div class="fcell eq">d(pc) = 1/p(arcsec)</div>
+        <div class="fcell vars">d = distance (parsecs), p = parallax angle (arcseconds)</div>
+        <div class="fcell note">Stellar parallax; 1 pc = 3.26 ly</div>
+        <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- CONSTANTS -->
-
   <div class="topic-panel" id="panel-constants">
     <p style="color:var(--white-dim); font-size:0.85rem; margin-bottom:1rem;">Fundamental constants provided in the IB Physics data booklet (2023–2028 syllabus).</p>
     <div class="constants-grid">
@@ -2146,9 +2089,8 @@ display: none;
 <hr class="section-divider">
 
 <!-- RESOURCES -->
-
 <section id="resources">
-
+  
   <h2>Curated Resource Library</h2>
   <p class="section-desc">Vetted links only. No dead links, no mediocre YouTube rabbit holes — each resource has a clear purpose.</p>
 
@@ -2273,9 +2215,8 @@ display: none;
 <hr class="section-divider">
 
 <!-- VIDEOS section -->
-
 <section id="videos">
-
+  
   <h2>Topic Video Picks</h2>
   <p class="section-desc">Curated videos for the most-tested IB Physics concepts.</p>
   <div class="video-grid">
@@ -2339,9 +2280,8 @@ display: none;
 <hr class="section-divider">
 
 <!-- AI TOOLS -->
-
 <section id="ai-tools">
-
+  
   <h2>AI Study Tools</h2>
   <p class="section-desc">AI-generated flashcards, practice questions, and misconception guides — use these for active recall, not passive reading.</p>
   <div class="ai-grid">
@@ -2419,9 +2359,8 @@ display: none;
 <hr class="section-divider">
 
 <!-- EXAM STRATEGY -->
-
 <section id="exams">
-
+  
   <h2>Exam Strategy</h2>
   <p class="section-desc">Paper formats, timing, and what actually costs marks — based on examiner reports.</p>
   <div class="papers-grid">
@@ -2482,9 +2421,8 @@ display: none;
 <hr class="section-divider">
 
 <!-- IA + EE -->
-
 <section id="ia">
-
+  
   <h2>IA & EE Support</h2>
   <p class="section-desc">Internal Assessment and Extended Essay resources — rubrics, exemplars, and guidance.</p>
   <div class="support-grid">
@@ -2528,48 +2466,45 @@ display: none;
       </div>
     </div>
 
-```
-<div class="support-card" id="ee-card">
-  <div class="support-header">
-    <div class="support-icon" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);">📖</div>
-    <div>
-      <div class="support-title">Extended Essay</div>
-      <div class="support-subtitle">4,000 words · Physics Category</div>
+    <div class="support-card" id="ee-card">
+      <div class="support-header">
+        <div class="support-icon" style="background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);">📖</div>
+        <div>
+          <div class="support-title">Extended Essay</div>
+          <div class="support-subtitle">4,000 words · Physics Category</div>
+        </div>
+      </div>
+      <div class="support-items">
+        <a href="https://www.ibo.org/programmes/diploma-programme/curriculum/dp-core/extended-essay/" target="_blank" class="support-item">
+          <div class="support-item-icon">📋</div>
+          <div class="support-item-text">
+            <div class="support-item-title">IB EE Official Guide</div>
+            <div class="support-item-desc">Rubric criteria: Focus & Method, Knowledge & Understanding, Critical Thinking, Presentation, Engagement</div>
+          </div>
+        </a>
+        <a href="https://scholar.google.com" target="_blank" class="support-item">
+          <div class="support-item-icon">🔍</div>
+          <div class="support-item-text">
+            <div class="support-item-title">Google Scholar</div>
+            <div class="support-item-desc">Primary source search. Use for peer-reviewed papers on your topic. Filter by date for recent studies.</div>
+          </div>
+        </a>
+        <a href="https://arxiv.org/archive/physics" target="_blank" class="support-item">
+          <div class="support-item-icon">📄</div>
+          <div class="support-item-text">
+            <div class="support-item-title">arXiv Physics Preprints</div>
+            <div class="support-item-desc">Free physics research papers. Useful for HL EE topics in quantum, astrophysics, or particle physics.</div>
+          </div>
+        </a>
+        <div class="support-item" style="cursor:default;">
+          <div class="support-item-icon">💡</div>
+          <div class="support-item-text">
+            <div class="support-item-title">EE Topic Ideas</div>
+            <div class="support-item-desc">Efficiency of solar cells · Acoustic resonance in instruments · Magnetic braking · Chaos in double pendulum · Black body radiation verification · Doppler in astrophysics</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="support-items">
-    <a href="https://www.ibo.org/programmes/diploma-programme/curriculum/dp-core/extended-essay/" target="_blank" class="support-item">
-      <div class="support-item-icon">📋</div>
-      <div class="support-item-text">
-        <div class="support-item-title">IB EE Official Guide</div>
-        <div class="support-item-desc">Rubric criteria: Focus & Method, Knowledge & Understanding, Critical Thinking, Presentation, Engagement</div>
-      </div>
-    </a>
-    <a href="https://scholar.google.com" target="_blank" class="support-item">
-      <div class="support-item-icon">🔍</div>
-      <div class="support-item-text">
-        <div class="support-item-title">Google Scholar</div>
-        <div class="support-item-desc">Primary source search. Use for peer-reviewed papers on your topic. Filter by date for recent studies.</div>
-      </div>
-    </a>
-    <a href="https://arxiv.org/archive/physics" target="_blank" class="support-item">
-      <div class="support-item-icon">📄</div>
-      <div class="support-item-text">
-        <div class="support-item-title">arXiv Physics Preprints</div>
-        <div class="support-item-desc">Free physics research papers. Useful for HL EE topics in quantum, astrophysics, or particle physics.</div>
-      </div>
-    </a>
-    <div class="support-item" style="cursor:default;">
-      <div class="support-item-icon">💡</div>
-      <div class="support-item-text">
-        <div class="support-item-title">EE Topic Ideas</div>
-        <div class="support-item-desc">Efficiency of solar cells · Acoustic resonance in instruments · Magnetic braking · Chaos in double pendulum · Black body radiation verification · Doppler in astrophysics</div>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
   </div>
 </section>
 
@@ -2587,7 +2522,6 @@ display: none;
     document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('panel-' + id).classList.add('active');
     event.target.classList.add('active');
-    if (window.MathJax) MathJax.typesetPromise();
   }
 
   function toggleMisconception(el) {
@@ -2601,9 +2535,20 @@ display: none;
 
   function toggleMobileNav(btn) {
     const links = document.querySelector('.nav-links');
-    if (links) links.classList.toggle('mobile-open');
+    if (links) {
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '60px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(10,15,30,0.98)';
+      links.style.padding = '1rem';
+      links.style.borderBottom = '1px solid var(--border)';
+    }
   }
 
+  // Theme switcher
   const themeColors = {
     navy:   '#3b82f6',
     purple: '#a78bfa',
@@ -2619,29 +2564,24 @@ display: none;
       o.classList.toggle('active', o.dataset.theme === theme);
     });
     localStorage.setItem('ib-theme', theme);
-    const menu = document.getElementById('theme-menu');
-    if (menu) menu.classList.remove('open');
+    document.getElementById('theme-menu').classList.remove('open');
   }
 
   function toggleThemeMenu(btn) {
     document.getElementById('theme-menu').classList.toggle('open');
   }
 
+  // Close menu when clicking outside
   document.addEventListener('click', e => {
     if (!e.target.closest('.theme-switcher')) {
-      const menu = document.getElementById('theme-menu');
-      if (menu) menu.classList.remove('open');
+      document.getElementById('theme-menu').classList.remove('open');
     }
   });
 
-  // Restore saved theme — skip light on load to avoid white flash
+  // Restore saved theme
   const saved = localStorage.getItem('ib-theme');
-  if (saved && saved !== 'light') setTheme(saved);
-  else {
-    localStorage.removeItem('ib-theme');
-    if (document.getElementById('active-dot'))
-      document.getElementById('active-dot').style.background = themeColors.navy;
-  }
+  if (saved) setTheme(saved);
+  else document.getElementById('active-dot').style.background = themeColors.navy;
 
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -2676,6 +2616,5 @@ display: none;
     glow.style.top = e.clientY + 'px';
   });
 </script>
-
 </body>
 </html>
