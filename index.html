@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 <style>
   :root {
     --navy: #0a0f1e;
@@ -418,11 +425,14 @@ align-items: center;
 .fcell:last-child { border-right: none; }
 
 .fcell.eq {
-font-family: ‘JetBrains Mono’, monospace;
-font-size: 0.88rem;
+font-size: 0.9rem;
 color: var(–cyan-light);
 font-style: normal;
-letter-spacing: -0.01em;
+line-height: 1.8;
+}
+
+.fcell.eq mjx-container {
+color: var(–cyan-light) !important;
 }
 
 .fcell.vars {
@@ -1406,37 +1416,37 @@ display: none;
 ```
   <div class="subtopic-header">A.1 · Kinematics</div>
   <div class="formula-row">
-    <div class="fcell eq">s = ½(u+v)t</div>
+    <div class="fcell eq">$s = \dfrac{1}{2}(u+v)t$</div>
     <div class="fcell vars">s = displacement (m), u = initial velocity (m/s), v = final velocity (m/s), t = time (s)</div>
     <div class="fcell note">Only valid for uniform acceleration</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">v = u + at</div>
+    <div class="fcell eq">$v = u + at$</div>
     <div class="fcell vars">a = acceleration (m/s²)</div>
     <div class="fcell note">Uniform acceleration only</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">s = ut + ½at²</div>
+    <div class="fcell eq">$s = ut + \dfrac{1}{2}at^2$</div>
     <div class="fcell vars">s = displacement (m)</div>
     <div class="fcell note">Use when v is unknown</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">v² = u² + 2as</div>
+    <div class="fcell eq">$v^2 = u^2 + 2as$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Use when t is unknown</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">v = 2πr/T = ωr</div>
+    <div class="fcell eq">$v = \dfrac{2\pi r}{T} = \omega r$</div>
     <div class="fcell vars">r = radius (m), T = period (s), ω = angular velocity (rad/s)</div>
     <div class="fcell note">Circular motion speed</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">a = v²/r = ω²r</div>
+    <div class="fcell eq">$a = \dfrac{v^2}{r} = \omega^2 r$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Centripetal acceleration, directed inward</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1444,49 +1454,49 @@ display: none;
 
   <div class="subtopic-header">A.2 · Forces and Momentum</div>
   <div class="formula-row">
-    <div class="fcell eq">F = ma = Δp/Δt</div>
+    <div class="fcell eq">$F = ma = \dfrac{\Delta p}{\Delta t}$</div>
     <div class="fcell vars">F = force (N), m = mass (kg), p = momentum (kg·m/s)</div>
     <div class="fcell note">Newton's 2nd law; F is net force</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">p = mv</div>
+    <div class="fcell eq">$p = mv$</div>
     <div class="fcell vars">p = momentum (kg·m/s)</div>
     <div class="fcell note">Linear momentum; vector quantity</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">J = FΔt = Δp</div>
+    <div class="fcell eq">$J = F\Delta t = \Delta p$</div>
     <div class="fcell vars">J = impulse (N·s)</div>
     <div class="fcell note">Impulse = change in momentum</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F_f ≤ μₛFₙ</div>
+    <div class="fcell eq">$F_f \leq \mu_s F_N$</div>
     <div class="fcell vars">Ff = friction force (N), μs = static friction coefficient, FN = normal force (N)</div>
     <div class="fcell note">Static friction; equality at impending motion</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F_f = μ_d Fₙ</div>
+    <div class="fcell eq">$F_f = \mu_d F_N$</div>
     <div class="fcell vars">μd = kinetic friction coefficient</div>
     <div class="fcell note">Kinetic friction (moving objects)</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F_H = −kx</div>
+    <div class="fcell eq">$F_H = -kx$</div>
     <div class="fcell vars">k = spring constant (N/m), x = extension (m)</div>
     <div class="fcell note">Hooke's Law; negative = restoring force</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F_d = 6πηrv</div>
+    <div class="fcell eq">$F_d = 6\pi\eta rv$</div>
     <div class="fcell vars">η = viscosity (Pa·s), r = radius (m), v = velocity (m/s)</div>
     <div class="fcell note">Stokes' drag on sphere</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F_b = ρVg</div>
+    <div class="fcell eq">$F_b = \rho V g$</div>
     <div class="fcell vars">ρ = fluid density (kg/m³), V = submerged volume (m³)</div>
     <div class="fcell note">Buoyancy force (Archimedes)</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1494,43 +1504,43 @@ display: none;
 
   <div class="subtopic-header">A.3 · Work, Energy and Power</div>
   <div class="formula-row">
-    <div class="fcell eq">W = Fs cosθ</div>
+    <div class="fcell eq">$W = Fs\cos\theta$</div>
     <div class="fcell vars">W = work (J), F = force (N), s = displacement (m), θ = angle between F and s</div>
     <div class="fcell note">Only component along displacement does work</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Eₖ = ½mv² = p²/2m</div>
+    <div class="fcell eq">$E_k = \dfrac{1}{2}mv^2 = \dfrac{p^2}{2m}$</div>
     <div class="fcell vars">Ek = kinetic energy (J)</div>
     <div class="fcell note">Second form useful when momentum is known</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ΔEₚ = mgΔh</div>
+    <div class="fcell eq">$\Delta E_p = mg\Delta h$</div>
     <div class="fcell vars">g = 9.8 m/s², Δh = height change (m)</div>
     <div class="fcell note">Gravitational PE near Earth's surface only</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">E_H = ½kx²</div>
+    <div class="fcell eq">$E_H = \dfrac{1}{2}kx^2$</div>
     <div class="fcell vars">k = spring constant (N/m), x = compression/extension (m)</div>
     <div class="fcell note">Elastic potential energy stored in spring</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">P = ΔW/Δt = Fv</div>
+    <div class="fcell eq">$P = \dfrac{\Delta W}{\Delta t} = Fv$</div>
     <div class="fcell vars">P = power (W)</div>
     <div class="fcell note">Second form for constant force and velocity</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">η = W_out / W_in</div>
+    <div class="fcell eq">$\eta = \dfrac{W_{out}}{W_{in}}$</div>
     <div class="fcell vars">η = efficiency (dimensionless, 0–1)</div>
     <div class="fcell note">Can also use power ratio; never > 1</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">τ = Fr sinθ</div>
+    <div class="fcell eq">$\tau = Fr\sin\theta$</div>
     <div class="fcell vars">τ = torque (N·m), r = moment arm (m)</div>
     <div class="fcell note">θ between F and r; equilibrium: Στ = 0</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1538,37 +1548,37 @@ display: none;
 
   <div class="subtopic-header">A.4 · Rigid Body Mechanics (HL only)</div>
   <div class="formula-row">
-    <div class="fcell eq">I = Σmr²</div>
+    <div class="fcell eq">$I = \Sigma mr^2$</div>
     <div class="fcell vars">I = moment of inertia (kg·m²)</div>
     <div class="fcell note">Sum over all mass elements</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">τ = Iα</div>
+    <div class="fcell eq">$\tau = I\alpha$</div>
     <div class="fcell vars">α = angular acceleration (rad/s²)</div>
     <div class="fcell note">Rotational analogue of F = ma</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">L = Iω</div>
+    <div class="fcell eq">$L = I\omega$</div>
     <div class="fcell vars">L = angular momentum (kg·m²/s)</div>
     <div class="fcell note">Conserved when no external torque</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ΔL = τΔt</div>
+    <div class="fcell eq">$\Delta L = \tau \Delta t$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Angular impulse = change in angular momentum</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Eₖ = ½Iω²</div>
+    <div class="fcell eq">$E_k = \dfrac{1}{2}I\omega^2$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Rotational kinetic energy</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ω_f = ω_i + αt</div>
+    <div class="fcell eq">$\omega_f = \omega_i + \alpha t$</div>
     <div class="fcell vars">ωi = initial angular velocity (rad/s), ωf = final (rad/s)</div>
     <div class="fcell note">Rotational kinematic equations; analogous to linear</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1576,25 +1586,25 @@ display: none;
 
   <div class="subtopic-header">A.5 · Galilean and Special Relativity (HL only)</div>
   <div class="formula-row">
-    <div class="fcell eq">γ = 1 / √(1 − v²/c²)</div>
+    <div class="fcell eq">$\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}$</div>
     <div class="fcell vars">γ = Lorentz factor (dimensionless), v = relative velocity (m/s), c = 3×10⁸ m/s</div>
     <div class="fcell note">γ ≥ 1; approaches infinity as v → c</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Δt = γΔt₀</div>
+    <div class="fcell eq">$\Delta t = \gamma \Delta t_0$</div>
     <div class="fcell vars">Δt₀ = proper time (s) — measured by observer at rest relative to event</div>
     <div class="fcell note">Moving clocks run slow (time dilation)</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">L = L₀/γ</div>
+    <div class="fcell eq">$L = \dfrac{L_0}{\gamma}$</div>
     <div class="fcell vars">L₀ = proper length (m) — measured in rest frame</div>
     <div class="fcell note">Length contracts in direction of motion</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">(Δs)² = (cΔt)² − (Δx)²</div>
+    <div class="fcell eq">$(\Delta s)^2 = (c\Delta t)^2 - (\Delta x)^2$</div>
     <div class="fcell vars">Δs = spacetime interval (m)</div>
     <div class="fcell note">Invariant quantity for all inertial observers</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1618,37 +1628,37 @@ display: none;
 ```
   <div class="subtopic-header">B.1 · Thermal Energy Transfers</div>
   <div class="formula-row">
-    <div class="fcell eq">Q = mcΔT</div>
+    <div class="fcell eq">$Q = mc\Delta T$</div>
     <div class="fcell vars">Q = heat energy (J), m = mass (kg), c = specific heat capacity (J/kg·K), ΔT = temperature change (K)</div>
     <div class="fcell note">No phase change; c depends on material</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Q = mL</div>
+    <div class="fcell eq">$Q = mL$</div>
     <div class="fcell vars">L = specific latent heat (J/kg)</div>
     <div class="fcell note">Phase change at constant T; Lf (fusion), Lv (vaporisation)</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ΔQ/Δt = kA · ΔT/Δx</div>
+    <div class="fcell eq">$\dfrac{\Delta Q}{\Delta t} = kA\dfrac{\Delta T}{\Delta x}$</div>
     <div class="fcell vars">k = thermal conductivity (W/m·K), A = area (m²), Δx = thickness (m)</div>
     <div class="fcell note">Conduction rate through a slab</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">L = σAT⁴</div>
+    <div class="fcell eq">$L = \sigma A T^4$</div>
     <div class="fcell vars">L = luminosity (W), σ = 5.67×10⁻⁸ W/m²K⁴, A = surface area (m²), T = temperature (K)</div>
     <div class="fcell note">Stefan-Boltzmann law; black body radiation</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">λ_max · T = 2.9×10⁻³ m·K</div>
+    <div class="fcell eq">$\lambda_{max} T = 2.9\times10^{-3}\ \text{m·K}$</div>
     <div class="fcell vars">λmax = peak wavelength (m), T = temperature (K)</div>
     <div class="fcell note">Wien's displacement law</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Eₖ = (3/2)k_B T</div>
+    <div class="fcell eq">$E_k = \dfrac{3}{2}k_B T$</div>
     <div class="fcell vars">kB = 1.38×10⁻²³ J/K, T = absolute temperature (K)</div>
     <div class="fcell note">Mean KE of ideal gas molecule</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1656,19 +1666,19 @@ display: none;
 
   <div class="subtopic-header">B.2 · Greenhouse Effect</div>
   <div class="formula-row">
-    <div class="fcell eq">b = L / (4πd²)</div>
+    <div class="fcell eq">$b = \dfrac{L}{4\pi d^2}$</div>
     <div class="fcell vars">b = apparent brightness (W/m²), L = luminosity (W), d = distance (m)</div>
     <div class="fcell note">Inverse square law for radiation</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">albedo = scattered / incident</div>
+    <div class="fcell eq">$\text{albedo} = \dfrac{\text{scattered}}{\text{incident}}$</div>
     <div class="fcell vars">dimensionless (0–1)</div>
     <div class="fcell note">Earth's average albedo ≈ 0.30</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ε = radiated / σT⁴</div>
+    <div class="fcell eq">$\varepsilon = \dfrac{\text{radiated}}{\sigma T^4}$</div>
     <div class="fcell vars">Ratio of power emitted vs. perfect black body</div>
     <div class="fcell note">ε = 1 for perfect black body; < 1 for real surfaces</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1676,25 +1686,25 @@ display: none;
 
   <div class="subtopic-header">B.3 · Gas Laws</div>
   <div class="formula-row">
-    <div class="fcell eq">PV = nRT = Nk_B T</div>
+    <div class="fcell eq">$PV = nRT = Nk_BT$</div>
     <div class="fcell vars">P = pressure (Pa), V = volume (m³), n = moles (mol), R = 8.31 J/mol·K, N = number of molecules</div>
     <div class="fcell note">Ideal gas equation; combines Boyle's, Charles's, Gay-Lussac's</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">PV/T = constant</div>
+    <div class="fcell eq">$\dfrac{PV}{T} = \text{const}$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Combined gas law for fixed amount of gas</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">P = ρv²/3</div>
+    <div class="fcell eq">$P = \dfrac{\rho v^2}{3}$</div>
     <div class="fcell vars">ρ = gas density (kg/m³), v = rms speed (m/s)</div>
     <div class="fcell note">Kinetic model of gases</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">U = (3/2)nRT</div>
+    <div class="fcell eq">$U = \dfrac{3}{2}nRT$</div>
     <div class="fcell vars">U = internal energy (J)</div>
     <div class="fcell note">Monatomic ideal gas only</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1702,25 +1712,25 @@ display: none;
 
   <div class="subtopic-header">B.4 · Thermodynamics (HL only)</div>
   <div class="formula-row">
-    <div class="fcell eq">Q = ΔU + W</div>
+    <div class="fcell eq">$Q = \Delta U + W$</div>
     <div class="fcell vars">Q = heat added (J), ΔU = internal energy change (J), W = work done by gas (J)</div>
     <div class="fcell note">First Law of Thermodynamics; sign convention matters</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">W = PΔV</div>
+    <div class="fcell eq">$W = P\Delta V$</div>
     <div class="fcell vars">W = work by gas (J)</div>
     <div class="fcell note">Isobaric (constant pressure) process only</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ΔS = ΔQ/T</div>
+    <div class="fcell eq">$\Delta S = \dfrac{\Delta Q}{T}$</div>
     <div class="fcell vars">ΔS = entropy change (J/K), T = absolute temperature (K)</div>
     <div class="fcell note">Reversible process; ΔS ≥ 0 for universe</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">η_Carnot = 1 − T_c/T_h</div>
+    <div class="fcell eq">$\eta_{Carnot} = 1 - \dfrac{T_c}{T_h}$</div>
     <div class="fcell vars">Tc = cold reservoir temperature (K), Th = hot reservoir temperature (K)</div>
     <div class="fcell note">Maximum possible efficiency; must use Kelvin</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1728,49 +1738,49 @@ display: none;
 
   <div class="subtopic-header">B.5 · Current and Circuits</div>
   <div class="formula-row">
-    <div class="fcell eq">I = Δq/Δt</div>
+    <div class="fcell eq">$I = \dfrac{\Delta q}{\Delta t}$</div>
     <div class="fcell vars">I = current (A), q = charge (C), t = time (s)</div>
     <div class="fcell note">Definition of current; conventional: positive charge flow</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">V = W/q</div>
+    <div class="fcell eq">$V = \dfrac{W}{q}$</div>
     <div class="fcell vars">V = voltage (V), W = work done (J)</div>
     <div class="fcell note">Potential difference = energy per unit charge</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">R = V/I</div>
+    <div class="fcell eq">$R = \dfrac{V}{I}$</div>
     <div class="fcell vars">R = resistance (Ω)</div>
     <div class="fcell note">Ohm's Law; only valid for ohmic conductors</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">R = ρL/A</div>
+    <div class="fcell eq">$R = \dfrac{\rho L}{A}$</div>
     <div class="fcell vars">ρ = resistivity (Ω·m), L = length (m), A = cross-section area (m²)</div>
     <div class="fcell note">Resistivity depends on material and temperature</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">P = IV = I²R = V²/R</div>
+    <div class="fcell eq">$P = IV = I^2R = \dfrac{V^2}{R}$</div>
     <div class="fcell vars">P = power (W)</div>
     <div class="fcell note">Three equivalent forms; use based on what's known</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">R_s = R₁ + R₂ + …</div>
+    <div class="fcell eq">$R_s = R_1 + R_2 + \ldots$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Series: same current, voltages add</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">1/Rₚ = 1/R₁ + 1/R₂ + …</div>
+    <div class="fcell eq">$\dfrac{1}{R_p} = \dfrac{1}{R_1} + \dfrac{1}{R_2} + \ldots$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Parallel: same voltage, currents add</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ε = I(R + r)</div>
+    <div class="fcell eq">$\varepsilon = I(R + r)$</div>
     <div class="fcell vars">ε = emf (V), r = internal resistance (Ω)</div>
     <div class="fcell note">Terminal voltage = ε − Ir (drops when current flows)</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1794,43 +1804,43 @@ display: none;
 ```
   <div class="subtopic-header">C.1 · Simple Harmonic Motion</div>
   <div class="formula-row">
-    <div class="fcell eq">a = −ω²x</div>
+    <div class="fcell eq">$a = -\omega^2 x$</div>
     <div class="fcell vars">ω = angular frequency (rad/s), x = displacement (m)</div>
     <div class="fcell note">Defining equation of SHM; acceleration always toward equilibrium</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">T = 1/f = 2π/ω</div>
+    <div class="fcell eq">$T = \dfrac{1}{f} = \dfrac{2\pi}{\omega}$</div>
     <div class="fcell vars">T = period (s), f = frequency (Hz)</div>
     <div class="fcell note">—</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">T = 2π√(m/k)</div>
+    <div class="fcell eq">$T = 2\pi\sqrt{\dfrac{m}{k}}$</div>
     <div class="fcell vars">m = mass (kg), k = spring constant (N/m)</div>
     <div class="fcell note">Mass-spring system period; independent of amplitude</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">T = 2π√(l/g)</div>
+    <div class="fcell eq">$T = 2\pi\sqrt{\dfrac{l}{g}}$</div>
     <div class="fcell vars">l = pendulum length (m), g = 9.8 m/s²</div>
     <div class="fcell note">Simple pendulum; valid for small angles only (&lt;10°)</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">x = x₀ sin(ωt + φ)</div>
+    <div class="fcell eq">$x = x_0 \sin(\omega t + \varphi)$</div>
     <div class="fcell vars">x₀ = amplitude (m), φ = initial phase (rad)</div>
     <div class="fcell note">HL: can also be cos form depending on initial conditions</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">v = ±ω√(x₀² − x²)</div>
+    <div class="fcell eq">$v = \pm\omega\sqrt{x_0^2 - x^2}$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Max speed at x = 0; zero speed at x = ±x₀</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">E_T = ½mω²x₀²</div>
+    <div class="fcell eq">$E_T = \dfrac{1}{2}m\omega^2 x_0^2$</div>
     <div class="fcell vars">ET = total mechanical energy (J)</div>
     <div class="fcell note">Constant in undamped SHM</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1838,13 +1848,13 @@ display: none;
 
   <div class="subtopic-header">C.2 · Wave Model</div>
   <div class="formula-row">
-    <div class="fcell eq">v = fλ = λ/T</div>
+    <div class="fcell eq">$v = f\lambda = \dfrac{\lambda}{T}$</div>
     <div class="fcell vars">v = wave speed (m/s), λ = wavelength (m)</div>
     <div class="fcell note">Universal wave equation</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">n = sinθ₁/sinθ₂ = v₁/v₂</div>
+    <div class="fcell eq">$n = \dfrac{\sin\theta_1}{\sin\theta_2} = \dfrac{v_1}{v_2}$</div>
     <div class="fcell vars">n = refractive index, θ₁ = angle of incidence, θ₂ = angle of refraction</div>
     <div class="fcell note">Snell's Law; n = c/v for each medium</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1852,31 +1862,31 @@ display: none;
 
   <div class="subtopic-header">C.3 · Wave Phenomena</div>
   <div class="formula-row">
-    <div class="fcell eq">constructive: Δd = nλ</div>
+    <div class="fcell eq">$\text{constructive: } \Delta d = n\lambda$</div>
     <div class="fcell vars">n = 0, ±1, ±2…</div>
     <div class="fcell note">Waves in phase; amplitude adds</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">destructive: Δd = (n+½)λ</div>
+    <div class="fcell eq">$\text{destructive: } \Delta d = (n+\tfrac{1}{2})\lambda$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Waves out of phase; cancel</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">s = λD/d</div>
+    <div class="fcell eq">$s = \dfrac{\lambda D}{d}$</div>
     <div class="fcell vars">s = fringe spacing (m), D = screen distance (m), d = slit separation (m)</div>
     <div class="fcell note">Double slit; small angle approximation</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">θ = λ/b</div>
+    <div class="fcell eq">$\theta = \dfrac{\lambda}{b}$</div>
     <div class="fcell vars">θ = first minimum angle (rad), b = slit width (m)</div>
     <div class="fcell note">Single slit diffraction minimum</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">nλ = d sinθ</div>
+    <div class="fcell eq">$n\lambda = d\sin\theta$</div>
     <div class="fcell vars">d = grating spacing (m), n = order number</div>
     <div class="fcell note">Diffraction grating maxima</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1884,13 +1894,13 @@ display: none;
 
   <div class="subtopic-header">C.5 · Doppler Effect</div>
   <div class="formula-row">
-    <div class="fcell eq">f′ = f(v ± uₛ)/v</div>
+    <div class="fcell eq">$f' = f\dfrac{v \pm u_s}{v}$</div>
     <div class="fcell vars">f' = observed frequency (Hz), us = source speed (m/s)</div>
     <div class="fcell note">Moving source: + when moving away, − when approaching</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Δf/f ≈ Δλ/λ ≈ v/c</div>
+    <div class="fcell eq">$\dfrac{\Delta f}{f} \approx \dfrac{\Delta\lambda}{\lambda} \approx \dfrac{v}{c}$</div>
     <div class="fcell vars">v = recession speed (m/s)</div>
     <div class="fcell note">Approximation for v &lt;&lt; c (astrophysics use)</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1914,37 +1924,37 @@ display: none;
 ```
   <div class="subtopic-header">D.1 · Gravitational Fields</div>
   <div class="formula-row">
-    <div class="fcell eq">F = Gm₁m₂/r²</div>
+    <div class="fcell eq">$F = \dfrac{Gm_1m_2}{r^2}$</div>
     <div class="fcell vars">G = 6.67×10⁻¹¹ N·m²/kg², r = separation (m)</div>
     <div class="fcell note">Newton's Law of Universal Gravitation; always attractive</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">g = F/m = GM/r²</div>
+    <div class="fcell eq">$g = \dfrac{F}{m} = \dfrac{GM}{r^2}$</div>
     <div class="fcell vars">g = gravitational field strength (N/kg = m/s²)</div>
     <div class="fcell note">g = 9.8 N/kg at Earth's surface</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Eₚ = −Gm₁m₂/r</div>
+    <div class="fcell eq">$E_p = -\dfrac{Gm_1m_2}{r}$</div>
     <div class="fcell vars">Ep = gravitational PE (J)</div>
     <div class="fcell note">Negative! Zero at infinity; becomes more negative as objects approach</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">V_g = −GM/r</div>
+    <div class="fcell eq">$V_g = -\dfrac{GM}{r}$</div>
     <div class="fcell vars">Vg = gravitational potential (J/kg)</div>
     <div class="fcell note">Scalar; always negative; Ep = mVg</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">v_esc = √(2GM/r)</div>
+    <div class="fcell eq">$v_{esc} = \sqrt{\dfrac{2GM}{r}}$</div>
     <div class="fcell vars">vesc = escape velocity (m/s)</div>
     <div class="fcell note">Minimum speed to escape gravity; no propulsion after launch</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">v_orb = √(GM/r)</div>
+    <div class="fcell eq">$v_{orb} = \sqrt{\dfrac{GM}{r}}$</div>
     <div class="fcell vars">—</div>
     <div class="fcell note">Circular orbit speed; from Fc = Fg</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -1952,37 +1962,37 @@ display: none;
 
   <div class="subtopic-header">D.2 · Electric and Magnetic Fields</div>
   <div class="formula-row">
-    <div class="fcell eq">F = kq₁q₂/r²</div>
+    <div class="fcell eq">$F = \dfrac{kq_1q_2}{r^2}$</div>
     <div class="fcell vars">k = 8.99×10⁹ N·m²/C², q = charge (C)</div>
     <div class="fcell note">Coulomb's Law; can be attractive or repulsive</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">E = F/q = V/d</div>
+    <div class="fcell eq">$E = \dfrac{F}{q} = \dfrac{V}{d}$</div>
     <div class="fcell vars">E = electric field (N/C = V/m), d = plate separation (m)</div>
     <div class="fcell note">Second form for uniform field between parallel plates</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">V_e = kQ/r</div>
+    <div class="fcell eq">$V_e = \dfrac{kQ}{r}$</div>
     <div class="fcell vars">Ve = electric potential (V), Q = source charge (C)</div>
     <div class="fcell note">Scalar; can be positive or negative; W = qΔVe</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F = qvB sinθ</div>
+    <div class="fcell eq">$F = qvB\sin\theta$</div>
     <div class="fcell vars">B = magnetic field strength (T), θ = angle between v and B</div>
     <div class="fcell note">Lorentz force on moving charge; use right-hand rule</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F = BIL sinθ</div>
+    <div class="fcell eq">$F = BIL\sin\theta$</div>
     <div class="fcell vars">I = current (A), L = wire length (m)</div>
     <div class="fcell note">Force on current-carrying conductor in magnetic field</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">F/L = μ₀I₁I₂ / (2πr)</div>
+    <div class="fcell eq">$\dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi r}$</div>
     <div class="fcell vars">μ₀ = 4π×10⁻⁷ T·m/A, r = separation (m)</div>
     <div class="fcell note">Force per unit length between parallel currents</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -1990,19 +2000,19 @@ display: none;
 
   <div class="subtopic-header">D.4 · Induction (HL only)</div>
   <div class="formula-row">
-    <div class="fcell eq">Φ = BA cosθ</div>
+    <div class="fcell eq">$\Phi = BA\cos\theta$</div>
     <div class="fcell vars">Φ = magnetic flux (Wb = T·m²), θ = angle between B and normal to area</div>
     <div class="fcell note">θ = 0 when B perpendicular to surface → max flux</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ε = −N · ΔΦ/Δt</div>
+    <div class="fcell eq">$\varepsilon = -N\dfrac{\Delta\Phi}{\Delta t}$</div>
     <div class="fcell vars">ε = induced emf (V), N = number of turns</div>
     <div class="fcell note">Faraday's Law; negative sign = Lenz's Law (opposes change)</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">ε = BvL</div>
+    <div class="fcell eq">$\varepsilon = BvL$</div>
     <div class="fcell vars">v = velocity of conductor (m/s), L = length (m)</div>
     <div class="fcell note">EMF in straight conductor moving through field</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -2026,19 +2036,19 @@ display: none;
 ```
   <div class="subtopic-header">E.1 · Structure of the Atom</div>
   <div class="formula-row">
-    <div class="fcell eq">E = hf</div>
+    <div class="fcell eq">$E = hf$</div>
     <div class="fcell vars">E = photon energy (J), h = 6.63×10⁻³⁴ J·s, f = frequency (Hz)</div>
     <div class="fcell note">Quantised energy of photon; E = hc/λ equivalent</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">E_n = −13.6/n² eV</div>
+    <div class="fcell eq">$E_n = -\dfrac{13.6}{n^2}\ \text{eV}$</div>
     <div class="fcell vars">n = energy level (integer ≥ 1)</div>
     <div class="fcell note">Hydrogen atom only; ground state n=1: E = −13.6 eV</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">R = R₀A^(1/3)</div>
+    <div class="fcell eq">$R = R_0 A^{1/3}$</div>
     <div class="fcell vars">R = nuclear radius (m), R₀ = 1.20×10⁻¹⁵ m, A = nucleon number</div>
     <div class="fcell note">Nuclear radius; implies constant nuclear density</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -2046,19 +2056,19 @@ display: none;
 
   <div class="subtopic-header">E.2 · Quantum Physics (HL only)</div>
   <div class="formula-row">
-    <div class="fcell eq">E_max = hf − Φ</div>
+    <div class="fcell eq">$E_{max} = hf - \Phi$</div>
     <div class="fcell vars">Emax = max KE of photoelectron (J), Φ = work function (J)</div>
     <div class="fcell note">Photoelectric effect; no emission if f &lt; threshold frequency</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">λ = h/p</div>
+    <div class="fcell eq">$\lambda = \dfrac{h}{p}$</div>
     <div class="fcell vars">λ = de Broglie wavelength (m), p = momentum (kg·m/s)</div>
     <div class="fcell note">Wave-particle duality; all matter has an associated wavelength</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">Δλ = (h/mₑc)(1 − cosθ)</div>
+    <div class="fcell eq">$\Delta\lambda = \dfrac{h}{m_e c}(1-\cos\theta)$</div>
     <div class="fcell vars">me = 9.11×10⁻³¹ kg, θ = scattering angle</div>
     <div class="fcell note">Compton scattering; wavelength shift of scattered X-ray</div>
     <div class="fcell"><span class="badge badge-hl">HL only</span></div>
@@ -2066,25 +2076,25 @@ display: none;
 
   <div class="subtopic-header">E.3 · Radioactive Decay</div>
   <div class="formula-row">
-    <div class="fcell eq">N = N₀e^(−λt)</div>
+    <div class="fcell eq">$N = N_0 e^{-\lambda t}$</div>
     <div class="fcell vars">N = number of nuclei remaining, N₀ = initial nuclei, λ = decay constant (s⁻¹)</div>
     <div class="fcell note">Exponential decay; λ is not wavelength here — context matters</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">A = λN = λN₀e^(−λt)</div>
+    <div class="fcell eq">$A = \lambda N = \lambda N_0 e^{-\lambda t}$</div>
     <div class="fcell vars">A = activity (Bq = decays/s)</div>
     <div class="fcell note">Activity also decays exponentially</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">T½ = ln2/λ</div>
+    <div class="fcell eq">$T_{1/2} = \dfrac{\ln 2}{\lambda}$</div>
     <div class="fcell vars">T½ = half-life (s)</div>
     <div class="fcell note">Time for half the nuclei to decay; T½ = 0.693/λ</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
   </div>
   <div class="formula-row">
-    <div class="fcell eq">E = mc²</div>
+    <div class="fcell eq">$E = mc^2$</div>
     <div class="fcell vars">E = energy (J), m = mass defect (kg)</div>
     <div class="fcell note">Mass-energy equivalence; binding energy calculations</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
@@ -2092,7 +2102,7 @@ display: none;
 
   <div class="subtopic-header">E.5 · Fusion and Stars</div>
   <div class="formula-row">
-    <div class="fcell eq">d(pc) = 1/p(arcsec)</div>
+    <div class="fcell eq">$d\ (\text{pc}) = \dfrac{1}{p\ (\text{arcsec})}$</div>
     <div class="fcell vars">d = distance (parsecs), p = parallax angle (arcseconds)</div>
     <div class="fcell note">Stellar parallax; 1 pc = 3.26 ly</div>
     <div class="fcell"><span class="badge badge-both">SL+HL</span></div>
